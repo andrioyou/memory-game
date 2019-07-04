@@ -1,0 +1,7 @@
+rules:
+  indentation:
+    - 2
+    - size: 2
+  nesting-depth:
+    - 4
+    - max-depth: 4
