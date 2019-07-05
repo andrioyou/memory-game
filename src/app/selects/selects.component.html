@@ -1,0 +1,27 @@
+<div class="wrap">
+  <div class="row" *ngFor="let select of selectsToDisplay; let i = index">
+    <div class="col-lg-6">
+      <select
+        #selectEl
+        (change)="selectChange($event.target.value, i, $event.srcElement.selectedIndex)"
+        [value]="selectedValues[i]"
+      >
+        <option
+          *ngFor="let selectEl of selects; let iEl = index"
+          value="{{ selectEl.varName }}"
+          [ngClass]="{ hide: selectEl.rotatingQuestionsTag !== activeTag && i !== 0 }"
+          [disabled]="selectedValues.indexOf(selectEl.varName) >= 0 && selectedValues.indexOf(selectEl.varName) !== i"
+        >
+          {{ selectEl.title }}</option
+        >
+      </select>
+      <button *ngIf="removeButton" (click)="removeSelect(i)">Remove</button>
+    </div>
+    <div class="col-lg-6">
+      <select>
+        <option *ngFor="let answer of select.answerOptions" value="{{ answer }}">{{ answer }} </option>
+      </select>
+    </div>
+  </div>
+  <button *ngIf="showMoreButton" (click)="showNextSelect()">Show more</button>
+</div>

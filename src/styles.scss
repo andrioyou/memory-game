@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~src/assets/scss/global';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $f-primary;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+select {
+  max-width: 200px;
+  width: 100%;
+}
