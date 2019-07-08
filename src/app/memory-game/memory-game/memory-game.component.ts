@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Image } from '../models/image.model';
+import { Image } from '../interfaces/image.interface';
 
 @Component({
   selector: 'app-memory-game',
@@ -31,7 +31,9 @@ export class MemoryGameComponent implements OnInit {
   }
 
   startStopwatch() {
-    if (this.stopwatchInterval) return;
+    if (this.stopwatchInterval) {
+      return;
+    }
     this.stopwatchInterval = setInterval(() => {
       this.stopwatch++;
     }, 1000);
@@ -39,7 +41,7 @@ export class MemoryGameComponent implements OnInit {
 
   stopStopwatch() {
     clearInterval(this.stopwatchInterval);
-    this.stopwatchInterval = undefined;
+    this.stopwatchInterval = null;
   }
 
   clearStopwatch() {
@@ -85,7 +87,9 @@ export class MemoryGameComponent implements OnInit {
       item.opened = false;
     });
     let time = this.transitionTime;
-    if (!this.stopwatchInterval) time = 0;
+    if (!this.stopwatchInterval) {
+      time = 0;
+    }
     this.stopStopwatch();
     this.clearStopwatch();
     this.clearScore();
@@ -103,7 +107,9 @@ export class MemoryGameComponent implements OnInit {
         break;
       }
     }
-    if (complete) this.gridComplete();
+    if (complete) {
+      this.gridComplete();
+    }
   }
 
   gridComplete() {
@@ -117,15 +123,19 @@ export class MemoryGameComponent implements OnInit {
   }
 
   showItem(index: number) {
-    if (!this.gridClickable) return;
+    if (!this.gridClickable) {
+      return;
+    }
     this.startStopwatch();
     this.compareImagesPair(index);
     this.checkGridComplete();
   }
 
   compareImagesPair(index: number) {
-    // if cliecked is already showed
-    if (index === this.compareIndex || this.gridImages[index].opened) return;
+    // if clicked is already showed
+    if (index === this.compareIndex || this.gridImages[index].opened) {
+      return;
+    }
 
     // show item
     this.gridImages[index].show = true;
@@ -139,12 +149,14 @@ export class MemoryGameComponent implements OnInit {
       if (this.gridImages[index].pictureId === this.comparePictureId && this.compareIndex !== null) {
         this.gridImages[index].opened = true;
         this.gridImages[this.compareIndex].opened = true;
-        this.increaseScore();
         time = 0;
+        this.increaseScore();
       }
       setTimeout(() => {
         this.gridImages[index].show = false;
-        if (this.compareIndex !== null) this.gridImages[this.compareIndex].show = false;
+        if (this.compareIndex !== null) {
+          this.gridImages[this.compareIndex].show = false;
+        }
         this.comparePictureId = null;
         this.compareIndex = null;
         this.gridClickable = true;
@@ -154,11 +166,13 @@ export class MemoryGameComponent implements OnInit {
 
   increaseScore() {
     let dif = Math.floor((100 - this.stopwatch) / 10);
-    if (dif < 0) dif = 0;
+    if (dif < 0) {
+      dif = 0;
+    }
     this.score += dif + 20;
   }
 
-  shuffleArray(array: any[]) {
+  shuffleArray(array: Image[]) {
     let currentIndex = array.length;
     let temporaryValue;
     let randomIndex;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PicturesService } from '../pictures.service';
+import { PICTURES } from '../guess-picture-name.const';
 import { Picture } from '../interfaces/picture.interface';
 
 @Component({
@@ -13,13 +13,9 @@ export class GuessWindowComponent implements OnInit {
   currentEl = 0;
   win = false;
 
-  constructor(private picturesService: PicturesService) {
-    this.pictures = picturesService.pictures;
+  constructor(private picturesConst: PICTURES) {
+    this.pictures = picturesConst.pictures;
   }
-
-  // constructor() {
-
-  // }
 
   nextPicture() {
     if (!(this.currentEl + 1 >= this.pictures.length)) {

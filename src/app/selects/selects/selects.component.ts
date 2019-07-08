@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Select } from '../interfaces/select.interface';
+import { SELECTS } from '../selects.const';
 
 @Component({
   selector: 'app-selects',
@@ -6,120 +8,96 @@ import { Component, OnInit, ViewChildren } from '@angular/core';
   styleUrls: ['./selects.component.scss']
 })
 export class SelectsComponent implements OnInit {
-  selects: any = [
-    {
-      rotatingQuestionsTag: 'A',
-      varName: '$Q0',
-      title: 'A question 1',
-      answerOptions: ['option-1', 'option-2', 'option-3']
-    },
-    {
-      rotatingQuestionsTag: 'A',
-      varName: '$Q1',
-      title: 'A question 2',
-      answerOptions: ['option-1', 'option-2', 'option-3']
-    },
-    {
-      rotatingQuestionsTag: 'A',
-      varName: '$Q2',
-      title: 'A question 3',
-      answerOptions: ['option-1', 'option-2', 'option-3']
-    },
-    {
-      rotatingQuestionsTag: 'B',
-      varName: '$Q3',
-      title: 'B question 1',
-      answerOptions: ['option-1', 'option-2', 'option-3']
-    },
-    {
-      rotatingQuestionsTag: 'B',
-      varName: '$Q4',
-      title: 'B question 2',
-      answerOptions: ['option-1', 'option-2', 'option-3']
-    },
-    {
-      rotatingQuestionsTag: 'B',
-      varName: '$Q5',
-      title: 'B question 3',
-      answerOptions: ['option-1', 'option-2', 'option-3']
-    }
-  ];
-  selectsByTag: any;
-  selectsToDisplay: any;
-  selectedValues: string[] = [];
-  activeTag: any = this.selects[0].rotatingQuestionsTag;
-  showMoreButton = false;
-  removeButton = false;
   @ViewChildren('selectEl') selectElements: any;
+  selects: Select[] = [];
+  selectsTagged: Select[] = [];
+  selectsTagActive: string;
+  selectsDisplayed: Select[] = [];
+  selectsValues: string[] = [];
+  buttonAdd: boolean;
+  buttonRemove: boolean;
 
-  constructor() {}
+  constructor(private selectsConst: SELECTS) {
+    this.selects = selectsConst.selects;
+    this.selectsTagActive = this.selects[0].rotatingQuestionsTag;
+    this.buttonAdd = false;
+    this.buttonRemove = false;
+  }
 
   ngOnInit() {
     this.initSelects();
   }
 
   initSelects() {
-    this.loadSelectsTag();
+    this.loadSelectsTagged();
     this.loadSelectsDisplayed();
-    this.loadSelectedValues();
-    if (this.selectsByTag.length > 1) this.showMoreButton = true;
+    this.loadSelectsValues();
   }
 
-  loadSelectsTag() {
-    this.selectsByTag = [];
-    this.selects.forEach((element: any) => {
-      if (this.activeTag === element.rotatingQuestionsTag) {
-        this.selectsByTag.push(element);
+  loadSelectsTagged() {
+    this.selectsTagged = [];
+    this.selects.forEach((element: Select) => {
+      if (this.selectsTagActive === element.rotatingQuestionsTag) {
+        this.selectsTagged.push(element);
       }
     });
+
+    // Check whether to enable more button
+    if (this.selectsTagged.length > 1) {
+      this.buttonAdd = true;
+    }
   }
 
   loadSelectsDisplayed() {
-    this.selectsToDisplay = [];
-    this.selectsToDisplay.push(this.selectsByTag[0]);
+    this.selectsDisplayed = [];
+    this.selectsDisplayed.push(this.selectsTagged[0]);
   }
 
-  loadSelectedValues() {
-    this.selectedValues = [];
-    this.selectsToDisplay.forEach((element: any) => {
-      this.selectedValues.push(element.varName);
+  loadSelectsValues() {
+    this.selectsValues = [];
+    this.selectsDisplayed.forEach((element: Select) => {
+      this.selectsValues.push(element.varName);
     });
   }
 
   selectChange(val: string, index: number, selIndex: number) {
-    this.selectedValues[index] = this.selectElements._results[index].nativeElement.value;
-    console.log(this.selectedValues);
+    this.selectsValues[index] = this.selectElements._results[index].nativeElement.value;
+
     // switch to another tag
-    if (index === 0 && this.activeTag !== this.selects[selIndex].rotatingQuestionsTag) {
-      this.activeTag = this.selects[selIndex].rotatingQuestionsTag;
+    if (index === 0 && this.selectsTagActive !== this.selects[selIndex].rotatingQuestionsTag) {
+      this.selectsTagActive = this.selects[selIndex].rotatingQuestionsTag;
       this.initSelects();
     }
   }
 
-  showNextSelect() {
-    const lengthOfDisplayed = this.selectsToDisplay.length;
-    const lengthOfTag = this.selectsByTag.length;
-    if (lengthOfDisplayed < lengthOfTag) {
-      this.selectsToDisplay.push(this.selectsByTag[lengthOfDisplayed]);
-    } else {
-      this.showMoreButton = false;
+  addSelect() {
+    const lengthOfDisplayed = this.selectsDisplayed.length;
+    const lengthOfTag = this.selectsTagged.length;
+    lengthOfDisplayed < lengthOfTag
+      ? this.selectsDisplayed.push(this.selectsTagged[lengthOfDisplayed])
+      : (this.buttonAdd = false);
+    if (this.selectsTagged.length === this.selectsDisplayed.length) {
+      this.buttonAdd = false;
     }
-    if (this.selectsByTag.length === this.selectsToDisplay.length) this.showMoreButton = false;
-    this.removeButton = true;
+    this.buttonRemove = true;
 
-    // Set next select val
-    for (const el of this.selectsByTag) {
-      if (!(this.selectedValues.indexOf(el.varName) > -1)) {
-        this.selectedValues.push(el.varName);
-        break;
-      }
-    }
+    // TODO: remove setting value.
+
+    // Set value
+    // for (const el of this.selectsTagged) {
+    //   if (!(this.selectsValues.indexOf(el.varName) > -1)) {
+    //     this.selectsValues.push(el.varName);
+    //     break;
+    //   }
+    // }
   }
 
   removeSelect(i: number) {
-    this.selectsToDisplay.splice(i, 1);
-    this.selectedValues.splice(i, 1);
-    this.showMoreButton = true;
-    if (this.selectsToDisplay.length === 1) this.removeButton = false;
+    this.selectsDisplayed.splice(i, 1);
+    this.selectsValues.splice(i, 1);
+    this.buttonAdd = true;
+    if (this.selectsDisplayed.length === 1) {
+      this.buttonRemove = false;
+    }
   }
 }

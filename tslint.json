@@ -47,7 +47,7 @@
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
-    "curly": [true, "ignore-same-line"]
+    "curly": [true]
   },
   "rulesDirectory": ["codelyzer"]
 }

@@ -1,21 +1,21 @@
 <div class="container">
-  <div class="row" *ngFor="let select of selectsToDisplay; let i = index">
+  <div class="row" *ngFor="let select of selectsDisplayed; let i = index">
     <div class="col-lg-6">
       <select
         #selectEl
         (change)="selectChange($event.target.value, i, $event.srcElement.selectedIndex)"
-        [value]="selectedValues[i]"
+        [value]="selectsValues[i]"
       >
         <option
           *ngFor="let selectEl of selects; let iEl = index"
           value="{{ selectEl.varName }}"
-          [ngClass]="{ hide: selectEl.rotatingQuestionsTag !== activeTag && i !== 0 }"
-          [disabled]="selectedValues.indexOf(selectEl.varName) >= 0 && selectedValues.indexOf(selectEl.varName) !== i"
+          [ngClass]="{ hide: selectEl.rotatingQuestionsTag !== selectsTagActive && i !== 0 }"
+          [disabled]="selectsValues.indexOf(selectEl.varName) >= 0 && selectsValues.indexOf(selectEl.varName) !== i"
         >
           {{ selectEl.title }}</option
         >
       </select>
-      <button *ngIf="removeButton" (click)="removeSelect(i)">Remove</button>
+      <button *ngIf="buttonRemove" (click)="removeSelect(i)">Remove</button>
     </div>
     <div class="col-lg-6">
       <select>
@@ -23,5 +23,5 @@
       </select>
     </div>
   </div>
-  <button *ngIf="showMoreButton" (click)="showNextSelect()">Show more</button>
+  <button *ngIf="buttonAdd" (click)="addSelect()">Show more</button>
 </div>

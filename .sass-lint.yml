@@ -9,3 +9,6 @@ rules:
   property-sort-order:
     - 1
     - order: concentric
+  no-color-literals:
+    - 1
+    - allow-rgba: true

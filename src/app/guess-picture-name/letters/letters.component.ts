@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -9,6 +9,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class LettersComponent implements OnInit, OnChanges {
   @Input() word = '';
   @Output() solved = new EventEmitter();
+
   randomLettersList: string[] = [];
   correctLettersList = [];
 
@@ -16,8 +17,10 @@ export class LettersComponent implements OnInit, OnChanges {
     this.initLetters();
   }
 
-  ngOnChanges(changes: any) {
-    if (changes.word) this.initLetters();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.word) {
+      this.initLetters();
+    }
   }
 
   initLetters() {
@@ -40,7 +43,7 @@ export class LettersComponent implements OnInit, OnChanges {
     }
   }
 
-  shuffleArray(array: any[]) {
+  shuffleArray(array: string[]) {
     let currentIndex = array.length;
     let temporaryValue;
     let randomIndex;

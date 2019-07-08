@@ -9,16 +9,16 @@ import { GuessWindowComponent } from './guess-window/guess-window.component';
 import { ImageComponent } from './image/image.component';
 import { InfoComponent } from './info/info.component';
 
-// Services
-import { PicturesService } from './pictures.service';
-
 // Material
 import { MatButtonModule } from '@angular/material/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
+// Consts
+import { PICTURES } from './guess-picture-name.const';
+
 @NgModule({
   declarations: [LettersComponent, GuessWindowComponent, ImageComponent, InfoComponent],
   imports: [CommonModule, GuessPictureNameRoutingModule, MatButtonModule, DragDropModule],
-  providers: [PicturesService]
+  providers: [PICTURES]
 })
 export class GuessPictureNameModule {}
