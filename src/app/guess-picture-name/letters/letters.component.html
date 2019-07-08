@@ -1,0 +1,27 @@
+<div class="list-wrap">
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    cdkDropListOrientation="horizontal"
+    [cdkDropListData]="correctLettersList"
+    [cdkDropListConnectedTo]="[randomLetters]"
+    class="example-list correct"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="example-box" *ngFor="let letter of correctLettersList" cdkDrag>{{ letter }}</div>
+  </div>
+</div>
+
+<div class="list-wrap">
+  <div
+    cdkDropList
+    #randomLetters="cdkDropList"
+    cdkDropListOrientation="horizontal"
+    [cdkDropListData]="randomLettersList"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="example-box" *ngFor="let letter of randomLettersList" cdkDrag>{{ letter }}</div>
+  </div>
+</div>

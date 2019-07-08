@@ -3,11 +3,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Image } from '../models/image.model';
 
 @Component({
-  selector: 'app-playground',
-  templateUrl: './playground.component.html',
-  styleUrls: ['./playground.component.scss']
+  selector: 'app-memory-game',
+  templateUrl: './memory-game.component.html',
+  styleUrls: ['./memory-game.component.scss']
 })
-export class PlaygroundComponent implements OnInit {
+export class MemoryGameComponent implements OnInit {
   images: object[] = [];
   stopwatch = 0;
   stopwatchInterval: any;

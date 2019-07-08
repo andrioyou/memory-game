@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlaygroundComponent } from './playground/playground.component';
-import { SelectsComponent } from './selects/selects.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, PlaygroundComponent, SelectsComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]

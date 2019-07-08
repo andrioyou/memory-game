@@ -1,0 +1,70 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+  margin-top: 30px;
+}
+
+.list-wrap {
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+}
+
+.example-list {
+  background: $c-white;
+  border: solid 1px $c-light;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  min-height: 60px;
+  overflow: hidden;
+  width: 1000px;
+
+  &.cdk-drop-list-dragging {
+    .example-box {
+      &:not(.cdk-drag-placeholder) {
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+  }
+
+  &.correct {
+    border-color: darken($c-light, 20%);
+  }
+}
+
+.example-box {
+  align-items: center;
+  background: $c-white;
+  border-right: solid 1px $c-light;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: flex;
+  flex-basis: 0;
+  flex-direction: row;
+  flex-grow: 1;
+  font-size: 20px;
+  justify-content: center;
+  padding: 15px 5px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:last-child {
+    border: 0;
+  }
+}
+
+.cdk-drag-preview {
+  border-radius: 4px;
+  box-shadow: 0 0 5px 0 rgba($c-black, 0.2);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

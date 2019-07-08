@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~src/assets/scss/global';
 
 * {
@@ -15,11 +16,15 @@ body {
 }
 
 img {
-  height: auto;
   max-width: 100%;
+  height: auto;
 }
 
 select {
-  max-width: 200px;
   width: 100%;
+  max-width: 200px;
+}
+
+a {
+  text-decoration: none;
 }
