@@ -63,7 +63,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"guess-picture-name-guess-picture-name-module-ngfactory":"guess-picture-name-guess-picture-name-module-ngfactory","memory-game-memory-game-module-ngfactory":"memory-game-memory-game-module-ngfactory","selects-selects-module-ngfactory":"selects-selects-module-ngfactory"}[chunkId]||chunkId) + "-es2015.js"
+/******/ 		return __webpack_require__.p + "" + ({"guess-picture-name-guess-picture-name-module":"guess-picture-name-guess-picture-name-module","memory-game-memory-game-module":"memory-game-memory-game-module","selects-selects-module":"selects-selects-module"}[chunkId]||chunkId) + "-es2015.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
