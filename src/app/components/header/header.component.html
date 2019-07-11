@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="header">
+    <div class="holder">
+      <a routerLink="" class="item logo">Trainee Projects</a>
+    </div>
+    <div *ngIf="hasToken" class="holder menu">
+      <a routerLink="/guess-picture-name" class="item">Guess Picture Name</a>
+      <a routerLink="/memory-game" class="item">Memory Game</a>
+      <a routerLink="/selects" class="item">Selects</a>
+    </div>
+    <div class="holder">
+      <button *ngIf="!hasToken" routerLink="/log-in" class="item">Log In</button>
+      <button *ngIf="hasToken" class="item" (click)="logOut()">Log Out</button>
+    </div>
+  </div>
+</div>

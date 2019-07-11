@@ -20,11 +20,64 @@ img {
   height: auto;
 }
 
-select {
-  width: 100%;
-  max-width: 200px;
+a {
+  transition: all 0.3s;
+  text-decoration: none;
+  color: $c-active;
+
+  &:hover {
+    color: lighten($c-active, 15%);
+  }
 }
 
-a {
-  text-decoration: none;
+input {
+  transition: all 0.3s;
+  outline: none;
+  border: 1px solid $c-light;
+  border-radius: 5px;
+  background-color: $c-white;
+  padding: 6px 10px;
+
+  &:hover {
+    border-color: lighten($c-active, 20%);
+  }
+
+  &:focus {
+    border-color: $c-active;
+  }
+}
+
+select {
+  outline: none;
+  border: 1px solid $c-light;
+  border-radius: 5px;
+  background-color: $c-white;
+  padding: 6px 10px;
+  width: 100%;
+  max-width: 200px;
+
+  &:hover {
+    border-color: lighten($c-active, 20%);
+  }
+
+  &:focus {
+    border-color: $c-active;
+  }
+}
+
+button {
+  transition: all 0.3s;
+  border: 1px solid $c-active;
+  border-radius: 5px;
+  background-color: $c-active;
+  cursor: pointer;
+  padding: 6px 15px;
+  color: $c-white;
+  font-size: 14px;
+  font-weight: 700;
+
+  &:hover {
+    background-color: $c-white;
+    color: $c-active;
+  }
 }

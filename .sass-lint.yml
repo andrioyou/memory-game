@@ -5,10 +5,14 @@ rules:
   nesting-depth:
     - 4
     - max-depth: 4
-  no-transition-all: false
+  no-transition-all:
+    - 0
   property-sort-order:
     - 1
     - order: concentric
   no-color-literals:
     - 1
     - allow-rgba: true
+  hex-notation:
+    - 1
+    - style: uppercase

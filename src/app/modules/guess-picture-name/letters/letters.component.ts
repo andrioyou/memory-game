@@ -13,6 +13,8 @@ export class LettersComponent implements OnInit, OnChanges {
   randomLettersList: string[] = [];
   correctLettersList = [];
 
+  constructor() {}
+
   ngOnInit() {
     this.initLetters();
   }
@@ -59,6 +61,4 @@ export class LettersComponent implements OnInit, OnChanges {
 
     return array;
   }
-
-  constructor() {}
 }
