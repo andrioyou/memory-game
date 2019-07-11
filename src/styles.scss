@@ -67,6 +67,7 @@ select {
 
 button {
   transition: all 0.3s;
+  outline: none;
   border: 1px solid $c-active;
   border-radius: 5px;
   background-color: $c-active;

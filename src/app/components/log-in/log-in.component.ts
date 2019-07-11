@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { User } from '../../models/user';
 import { AppState, selectAuthState } from '../../store/app.states';
 import { LogIn } from '../../store/actions/auth.actions';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -17,9 +18,11 @@ export class LogInComponent implements OnInit, OnDestroy {
   getState: Observable<any>;
   getStateSub: Subscription | null = null;
   errorMessage: string | null = null;
+  hasToken = false;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, authService: AuthService) {
     this.getState = this.store.select(selectAuthState);
+    this.hasToken = authService.hasToken();
   }
 
   ngOnInit() {
