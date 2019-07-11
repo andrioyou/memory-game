@@ -10,6 +10,7 @@
     </div>
     <div class="holder">
       <button *ngIf="!hasToken" routerLink="/log-in" class="item">Log In</button>
+      <a *ngIf="hasToken" routerLink="/my-account" class="item">My account</a>
       <button *ngIf="hasToken" class="item" (click)="logOut()">Log Out</button>
     </div>
   </div>

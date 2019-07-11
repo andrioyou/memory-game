@@ -19,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 // auth
 import { AuthService } from './services/auth.service';
@@ -29,7 +30,7 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { reducers } from './store/app.states';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LogInComponent, SignUpComponent, HomePageComponent],
+  declarations: [AppComponent, HeaderComponent, LogInComponent, SignUpComponent, HomePageComponent, MyAccountComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

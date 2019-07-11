@@ -6,7 +6,7 @@ import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
-  private BASE_URL = 'http://localhost:1337';
+  private BASE_URL = 'https://my-json-server.typicode.com/andrioyou/my-json-server';
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +20,8 @@ export class AuthService {
 
   logIn(email: string, password: string): Observable<any> {
     const url = `${this.BASE_URL}/login`;
-    return this.http.post<User>(url, { email, password });
+    // return this.http.get<User>(url, { email, password });
+    return this.http.get(url);
   }
 
   signUp(email: string, password: string): Observable<User> {

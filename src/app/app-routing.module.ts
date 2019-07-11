@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+// components
 import { LogInComponent } from './components/log-in/log-in.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
+// Auth
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -20,6 +24,11 @@ const routes: Routes = [
     path: 'guess-picture-name',
     loadChildren: () =>
       import('./modules/guess-picture-name/guess-picture-name.module').then(mod => mod.GuessPictureNameModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'my-account',
+    component: MyAccountComponent,
     canActivate: [AuthGuard]
   },
   {
