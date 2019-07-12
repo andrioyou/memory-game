@@ -18,7 +18,7 @@
       <button *ngIf="buttonRemove" (click)="removeSelect(i)">Remove</button>
     </div>
     <div class="col-lg-6">
-      <select>
+      <select *ngIf="selectsValues[i]">
         <option *ngFor="let answer of select.answerOptions" value="{{ answer }}">{{ answer }} </option>
       </select>
     </div>

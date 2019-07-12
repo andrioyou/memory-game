@@ -8,7 +8,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem('token') ? true : false,
   user: null,
   errorMessage: null
 };

@@ -37,7 +37,7 @@ import { reducers } from './store/app.states';
     FormsModule,
     HttpClientModule,
     EffectsModule.forRoot([AuthEffects]),
-    StoreModule.forRoot(reducers, {})
+    StoreModule.forRoot(reducers)
   ],
   providers: [
     AuthService,

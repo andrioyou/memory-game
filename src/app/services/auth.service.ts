@@ -4,9 +4,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { User } from '../models/user';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-  private BASE_URL = 'https://my-json-server.typicode.com/andrioyou/my-json-server';
+  // private BASE_URL = 'https://my-json-server.typicode.com/andrioyou/my-json-server';
+  private BASE_URL = 'http://localhost:1337';
 
   constructor(private http: HttpClient) {}
 
@@ -20,8 +23,8 @@ export class AuthService {
 
   logIn(email: string, password: string): Observable<any> {
     const url = `${this.BASE_URL}/login`;
-    // return this.http.get<User>(url, { email, password });
-    return this.http.get(url);
+    return this.http.post<User>(url, { email, password });
+    // return this.http.get(url);
   }
 
   signUp(email: string, password: string): Observable<User> {

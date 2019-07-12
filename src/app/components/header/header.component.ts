@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getState: Observable<any>;
   getStateSub: Subscription | null = null;
   isAuthenticated = false;
-  hasToken = false;
   user = null;
 
   constructor(private store: Store<AppState>, private authService: AuthService) {
@@ -26,10 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getStateSub = this.getState.subscribe(state => {
       this.isAuthenticated = state.isAuthenticated;
-      this.user = state.user;
-      this.isAuthenticated ? (this.hasToken = true) : (this.hasToken = false);
     });
-    this.hasToken = this.authService.hasToken();
   }
 
   ngOnDestroy() {

@@ -11,7 +11,7 @@ export class LettersComponent implements OnInit, OnChanges {
   @Output() solved = new EventEmitter();
 
   randomLettersList: string[] = [];
-  correctLettersList = [];
+  correctLettersList: string[] = [];
 
   constructor() {}
 

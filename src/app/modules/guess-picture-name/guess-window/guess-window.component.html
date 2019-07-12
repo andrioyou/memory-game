@@ -9,8 +9,8 @@
         <app-letters [word]="pictures[currentEl]['word']" (solved)="nextPicture($event)"></app-letters>
       </div>
 
-      <div class="button-holder">
-        <button *ngIf="win" mat-raised-button (click)="restart()">Restart</button>
+      <div class="button-holder" *ngIf="win">
+        <button mat-raised-button (click)="restart()">Restart</button>
       </div>
     </div>
   </div>

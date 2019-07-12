@@ -14,20 +14,21 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit, OnDestroy {
-  user: User = new User();
+  user: User;
   getState: Observable<any>;
   getStateSub: Subscription | null = null;
   errorMessage: string | null = null;
-  hasToken = false;
+  isAuthenticated = false;
 
-  constructor(private store: Store<AppState>, authService: AuthService) {
+  constructor(private store: Store<AppState>) {
     this.getState = this.store.select(selectAuthState);
-    this.hasToken = authService.hasToken();
+    this.user = new User();
   }
 
   ngOnInit() {
     this.getStateSub = this.getState.subscribe(state => {
       this.errorMessage = state.errorMessage;
+      this.isAuthenticated = state.isAuthenticated;
     });
   }
 

@@ -13,12 +13,9 @@ import { InfoComponent } from './info/info.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-// Consts
-import { PICTURES } from './guess-picture-name.const';
-
 @NgModule({
   declarations: [LettersComponent, GuessWindowComponent, ImageComponent, InfoComponent],
   imports: [CommonModule, GuessPictureNameRoutingModule, MatButtonModule, DragDropModule],
-  providers: [PICTURES]
+  providers: []
 })
 export class GuessPictureNameModule {}

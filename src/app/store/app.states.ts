@@ -6,7 +6,7 @@ export interface AppState {
   authState: auth.State;
 }
 
-export const reducers = {
+export const reducers: any = {
   auth: auth.reducer
 };
 

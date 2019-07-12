@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Select } from '../interfaces/select.interface';
-import { SELECTS } from '../selects.const';
+import { selects } from '../selects.const';
 
 @Component({
   selector: 'app-selects',
@@ -11,17 +11,14 @@ export class SelectsComponent implements OnInit {
   @ViewChildren('selectEl') selectElements: any;
   selects: Select[] = [];
   selectsTagged: Select[] = [];
-  selectsTagActive: string;
+  selectsTagActive: string | null = null;
   selectsDisplayed: Select[] = [];
   selectsValues: string[] = [];
-  buttonAdd: boolean;
-  buttonRemove: boolean;
+  buttonAdd = false;
+  buttonRemove = false;
 
-  constructor(private selectsConst: SELECTS) {
-    this.selects = selectsConst.selects;
-    this.selectsTagActive = this.selects[0].rotatingQuestionsTag;
-    this.buttonAdd = false;
-    this.buttonRemove = false;
+  constructor() {
+    this.selects = selects;
   }
 
   ngOnInit() {
@@ -35,6 +32,10 @@ export class SelectsComponent implements OnInit {
   }
 
   loadSelectsTagged() {
+    if (this.selects.length && this.selects[0].rotatingQuestionsTag) {
+      this.selectsTagActive = this.selects[0].rotatingQuestionsTag;
+    }
+
     this.selectsTagged = [];
     this.selects.forEach((element: Select) => {
       if (this.selectsTagActive === element.rotatingQuestionsTag) {
@@ -50,7 +51,9 @@ export class SelectsComponent implements OnInit {
 
   loadSelectsDisplayed() {
     this.selectsDisplayed = [];
-    this.selectsDisplayed.push(this.selectsTagged[0]);
+    if (this.selectsTagged.length) {
+      this.selectsDisplayed.push(this.selectsTagged[0]);
+    }
   }
 
   loadSelectsValues() {
@@ -61,6 +64,7 @@ export class SelectsComponent implements OnInit {
   }
 
   selectChange(val: string, index: number, selIndex: number) {
+    this.selectsDisplayed[index] = this.selectsTagged[selIndex];
     this.selectsValues[index] = this.selectElements._results[index].nativeElement.value;
 
     // switch to another tag
@@ -73,23 +77,29 @@ export class SelectsComponent implements OnInit {
   addSelect() {
     const lengthOfDisplayed = this.selectsDisplayed.length;
     const lengthOfTag = this.selectsTagged.length;
-    lengthOfDisplayed < lengthOfTag
-      ? this.selectsDisplayed.push(this.selectsTagged[lengthOfDisplayed])
-      : (this.buttonAdd = false);
+    if (lengthOfDisplayed < lengthOfTag) {
+      for (const itemT of this.selectsTagged) {
+        let found = false;
+        for (const itemD of this.selectsDisplayed) {
+          if (itemD.varName === itemT.varName) {
+            found = true;
+          }
+        }
+        if (!found) {
+          this.selectsDisplayed.push(itemT);
+          break;
+        }
+      }
+    } else {
+      this.buttonAdd = false;
+    }
     if (this.selectsTagged.length === this.selectsDisplayed.length) {
       this.buttonAdd = false;
     }
     this.buttonRemove = true;
 
-    // TODO: remove setting value.
-
-    // Set value
-    // for (const el of this.selectsTagged) {
-    //   if (!(this.selectsValues.indexOf(el.varName) > -1)) {
-    //     this.selectsValues.push(el.varName);
-    //     break;
-    //   }
-    // }
+    // add value
+    this.selectsValues.push('');
   }
 
   removeSelect(i: number) {

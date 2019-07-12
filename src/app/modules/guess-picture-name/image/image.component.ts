@@ -7,7 +7,7 @@ import { stringify } from '@angular/compiler/src/util';
   styleUrls: ['./image.component.scss']
 })
 export class ImageComponent implements OnInit {
-  @Input() imgUrl = '';
+  @Input() public imgUrl = '';
 
   ngOnInit() {}
 }
