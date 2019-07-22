@@ -1,0 +1,55 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+  padding-top: 15px;
+  padding-bottom: 60px;
+}
+
+.modal {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px 3px rgba($c-black, 0.2);
+  background-color: $c-white;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  min-height: 200px;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.message {
+  margin: 0 0 15px;
+  text-align: right;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  button {
+    margin: 2px;
+    padding: 3px 7px;
+  }
+}
+
+td,
+th {
+  border: 1px solid $c-light;
+  padding: 8px;
+  text-align: left;
+}
+
+tr {
+  &:nth-child(even) {
+    background-color: lighten($c-light, 12%);
+  }
+}
+
+.add-new-item {
+  margin-top: 15px;
+}

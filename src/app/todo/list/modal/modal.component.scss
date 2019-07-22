@@ -1,0 +1,35 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+  padding: 30px;
+}
+
+.text {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.note {
+  margin-top: 3px;
+  font-size: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+
+  &.ng-touched {
+    &.ng-invalid {
+      border-color: $c-red;
+    }
+  }
+}
+
+.submit {
+  margin-top: 10px;
+}

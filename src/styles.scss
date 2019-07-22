@@ -1,4 +1,6 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~primeicons/primeicons.css';
+@import '~src/assets/scss/custom/theme';
+@import '~primeng/resources/primeng.min.css';
 @import '~src/assets/scss/global';
 
 * {
@@ -38,12 +40,18 @@ input {
   background-color: $c-white;
   padding: 6px 10px;
 
-  &:hover {
-    border-color: lighten($c-active, 20%);
+  &:read-only {
+    cursor: not-allowed;
   }
 
-  &:focus {
-    border-color: $c-active;
+  &:not(:read-only) {
+    &:hover {
+      border-color: lighten($c-active, 20%);
+    }
+
+    &:focus {
+      border-color: $c-active;
+    }
   }
 }
 
@@ -80,5 +88,16 @@ button {
   &:hover {
     background-color: $c-white;
     color: $c-active;
+  }
+
+  &:disabled,
+  &[disabled] {
+    border-color: $c-grey;
+    background-color: $c-grey;
+    cursor: default;
+
+    &:hover {
+      color: $c-white;
+    }
   }
 }

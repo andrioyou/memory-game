@@ -1,0 +1,20 @@
+<form #todoForm="ngForm" (ngSubmit)="onSubmit()">
+  <label>
+    <span class="text">Name: *</span>
+    <input type="text" name="name" ngModel #name="ngModel" required />
+    <span class="note" *ngIf="!name.valid && name.touched">Please write a name</span>
+  </label>
+  <label>
+    <span class="text">Type:</span>
+    <input type="text" name="type" ngModel />
+  </label>
+  <label>
+    <span class="text">Date created:</span>
+    <input type="text" name="dateCreated" ngModel [ngModel]="todayDate" mask="00/00/0000" readonly />
+  </label>
+  <label>
+    <span class="text">Date Todo:</span>
+    <input type="text" name="dateTodo" ngModel mask="d0/M0/0000" [showMaskTyped]="true" />
+  </label>
+  <button class="submit" type="submit" [disabled]="!todoForm.valid">Submit</button>
+</form>

@@ -1,0 +1,17 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+  padding: 60px 0;
+}
+
+.highlight {
+  display: inline-block;
+  color: $c-dark;
+}
+
+.holder {
+  display: inline-block;
+  width: 120px;
+  max-width: 100%;
+}

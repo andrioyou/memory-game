@@ -1,0 +1,44 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+  border-bottom: 1px solid $c-light;
+  padding: 15px 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 27px;
+}
+
+.holder {
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+
+  &.menu {
+    margin-right: auto;
+  }
+}
+
+.item {
+  display: inline-block;
+  font-size: 14px;
+
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+
+  &.active {
+    border-bottom: 1px solid $c-active;
+  }
+}
+
+.logo {
+  text-transform: uppercase;
+  color: $c-black;
+  font-size: 16px;
+  font-weight: 700;
+}
