@@ -11,33 +11,33 @@ import { Observable } from 'rxjs';
 export class ListComponent implements OnInit {
   title = 'TODO List';
   list: Item[] = [];
-  modal = false;
-  message$: Observable<string> | null = null;
-  itemToEdit: Item | null = null;
+  modalOpened = false;
+  status$: Observable<string> | null = null;
+  editableItem: Item | null = null;
+  editableItemIndex: number | null = null;
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
     this.list = this.todoService.getList();
-    this.message$ = this.todoService.message;
-    // this.todoService.setList([
-    //   {
-    //     index: 0,
-    //     name: 'First item',
-    //     type: 'Home things',
-    //     dateCreated: '01/01/2000',
-    //     dateTodo: '01/01/2020',
-    //   }
-    // ]);
+    this.status$ = this.todoService.status;
   }
 
   syncList() {
     this.todoService.setList(this.list);
   }
 
-  addItem(item: Item) {
-    item.index = this.list.length;
-    this.list.push(item);
+  addItem(event: { item: Item; index: number | null }) {
+    let i = null;
+    const item = event.item;
+    if (event.index || event.index === 0) {
+      i = event.index;
+    }
+    if (i || i === 0) {
+      this.list[i] = item;
+    } else {
+      this.list.push(item);
+    }
     this.syncList();
     this.closeModal();
   }
@@ -48,20 +48,17 @@ export class ListComponent implements OnInit {
   }
 
   editItem(i: number) {
-    console.log('Edit item - ' + i);
-    this.itemToEdit = this.list[i];
+    this.editableItem = this.list[i];
+    this.editableItemIndex = i;
     this.openModal();
   }
 
   openModal() {
-    this.modal = true;
+    this.modalOpened = true;
   }
 
   closeModal() {
-    this.modal = false;
-  }
-
-  onCloseModal() {
-    console.log('onCloseModal');
+    this.modalOpened = false;
+    this.editableItem = null;
   }
 }

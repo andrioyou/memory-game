@@ -1,15 +1,17 @@
 <div class="container">
   <h1 class="title">{{ title }}</h1>
-  <p class="message">{{ message$ | async }}</p>
+  <p class="status">{{ status$ | async }}</p>
   <table class="list">
     <tr>
+      <th>Index</th>
       <th>Name</th>
       <th>Type</th>
-      <th>Date created</th>
+      <th>Date created/edited</th>
       <th>Date Todo</th>
       <th>Actions</th>
     </tr>
     <tr *ngFor="let item of list; let i = index">
+      <td>{{ i + 1 }}</td>
       <td>{{ item.name }}</td>
       <td>{{ item.type }}</td>
       <td>{{ item.dateCreated }}</td>
@@ -23,6 +25,11 @@
 
   <button class="add-new-item" (click)="openModal()">Add new</button>
 </div>
-<div class="modal" *ngIf="modal">
-  <app-modal (addNewItem)="addItem($event)" (closeModal)="onCloseModal()" [inputItem]="itemToEdit"></app-modal>
+<div class="modal" *ngIf="modalOpened">
+  <app-modal
+    (addNewItem)="addItem($event)"
+    (closeModal)="closeModal()"
+    [inputItem]="editableItem"
+    [inputItemIndex]="editableItemIndex"
+  ></app-modal>
 </div>

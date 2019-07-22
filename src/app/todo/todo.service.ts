@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class TodoService {
   localStorageName = 'todoList';
-  private messageSubject = new BehaviorSubject<string>('test');
-  message = this.messageSubject.asObservable();
+  private statusSubject = new BehaviorSubject<string>('test');
+  status = this.statusSubject.asObservable();
 
   constructor() {}
 
@@ -21,9 +21,9 @@ export class TodoService {
   }
 
   private updateMessage(message: string) {
-    this.messageSubject.next(message);
+    this.statusSubject.next(message);
     setTimeout(() => {
-      this.messageSubject.next('Idle');
+      this.statusSubject.next('Idle');
     }, 3000);
   }
 
