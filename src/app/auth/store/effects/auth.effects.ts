@@ -32,10 +32,8 @@ export class AuthEffects {
       return this.authService
         .logIn(payload.email, payload.password)
         .map(user => {
-          console.log(user);
           return new LogInSuccess({
             token: user.token,
-            // email: payload.email,
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName

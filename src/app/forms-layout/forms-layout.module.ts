@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // forms
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // routing
 import { FormsLayoutRoutingModule } from './forms-layout-routing.module';
@@ -18,6 +18,13 @@ import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [FormsComponent],
-  imports: [CommonModule, FormsLayoutRoutingModule, NgxMaskModule.forRoot(), FormsModule, ButtonModule]
+  imports: [
+    CommonModule,
+    FormsLayoutRoutingModule,
+    NgxMaskModule.forRoot(),
+    FormsModule,
+    ButtonModule,
+    ReactiveFormsModule
+  ]
 })
 export class FormsLayoutModule {}
