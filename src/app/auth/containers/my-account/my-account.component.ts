@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
 
-import { User } from '../../models/user.model';
-import { AppState, selectAuthState } from '../../store/app.states';
+import { selectAuthState } from '../../store/auth.states';
+import { AuthState } from '../../store/auth.reducers';
 
 @Component({
   selector: 'app-my-account',
@@ -12,13 +13,13 @@ import { AppState, selectAuthState } from '../../store/app.states';
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent implements OnInit, OnDestroy {
-  getState: Observable<any>;
+  getState: Observable<AuthState>;
   getStateSub: Subscription | null = null;
   email: string | null = null;
   firstName: string | null = null;
   lastName: string | null = null;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AuthState>) {
     this.getState = this.store.select(selectAuthState);
   }
 

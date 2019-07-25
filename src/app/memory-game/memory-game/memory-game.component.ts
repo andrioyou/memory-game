@@ -10,7 +10,7 @@ import { Image } from '../interfaces/image.interface';
 export class MemoryGameComponent implements OnInit {
   images: object[] = [];
   stopwatch = 0;
-  stopwatchInterval: any;
+  stopwatchInterval: number | null = null;
   score = 0;
   gridImages: Image[] = [];
   gridSize = 4;
@@ -34,13 +34,15 @@ export class MemoryGameComponent implements OnInit {
     if (this.stopwatchInterval) {
       return;
     }
-    this.stopwatchInterval = setInterval(() => {
+    this.stopwatchInterval = window.setInterval(() => {
       this.stopwatch++;
     }, 1000);
   }
 
   stopStopwatch() {
-    clearInterval(this.stopwatchInterval);
+    if (this.stopwatchInterval) {
+      clearInterval(this.stopwatchInterval);
+    }
     this.stopwatchInterval = null;
   }
 

@@ -41,17 +41,6 @@ export class FormsComponent implements OnInit {
     this.skillsValue = this.skillsForm.value;
   }
 
-  getSkillValidity(i: number, skillName: string) {
-    const skills = this.skillsForm.get('skills');
-    if (skills) {
-      const skillsItem = skills.get(i.toString());
-      if (skillsItem) {
-        console.log(skillsItem.get(skillName));
-      }
-    }
-    return false;
-  }
-
   get controls() {
     return (this.skillsForm.get('skills') as FormArray).controls;
   }

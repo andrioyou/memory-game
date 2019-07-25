@@ -1,13 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignUpComponent } from './sign-up.component';
-import { FormsModule } from '@angular/forms';
+import { MyAccountComponent } from './my-account.component';
 
 // ngrx
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthEffects } from '../../store/effects/auth.effects';
-import { reducers } from '../../store/app.states';
+import { AuthEffects } from '../../store/auth.effects';
+import { reducers } from '../../store/auth.states';
 
 // http
 import { HttpClientModule } from '@angular/common/http';
@@ -15,25 +14,24 @@ import { HttpClientModule } from '@angular/common/http';
 // router
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('SignUpComponent', () => {
-  let component: SignUpComponent;
-  let fixture: ComponentFixture<SignUpComponent>;
+describe('MyAccountComponent', () => {
+  let component: MyAccountComponent;
+  let fixture: ComponentFixture<MyAccountComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SignUpComponent],
+      declarations: [MyAccountComponent],
       imports: [
-        FormsModule,
-        HttpClientModule,
-        RouterTestingModule,
         EffectsModule.forRoot([AuthEffects]),
-        StoreModule.forRoot(reducers)
+        StoreModule.forRoot(reducers),
+        HttpClientModule,
+        RouterTestingModule
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignUpComponent);
+    fixture = TestBed.createComponent(MyAccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

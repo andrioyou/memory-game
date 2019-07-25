@@ -6,8 +6,8 @@ import { FormsModule } from '@angular/forms';
 // ngrx
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthEffects } from '../../store/effects/auth.effects';
-import { reducers } from '../../store/app.states';
+import { AuthEffects } from '../../store/auth.effects';
+import { reducers } from '../../store/auth.states';
 
 // http
 import { HttpClientModule } from '@angular/common/http';

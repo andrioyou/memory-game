@@ -1,13 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/components/header/header.component';
+import { HeaderComponent } from './shared/containers/header/header.component';
 import { ComponentFixture } from '@angular/core/testing';
 
 // ngrx
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthEffects } from './auth/store/effects/auth.effects';
-import { reducers } from './auth/store/app.states';
+import { AuthEffects } from './auth/store/auth.effects';
+import { reducers } from './auth/store/auth.states';
 
 // http
 import { HttpClientModule } from '@angular/common/http';

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { User } from '../models/user.model';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class AuthService {
     return localStorage.getItem('token') ? true : false;
   }
 
-  logIn(email: string, password: string): Observable<any> {
+  logIn(email: string, password: string): Observable<User> {
     const url = `${this.BASE_URL}/login`;
     return this.http.post<User>(url, { email, password });
   }
@@ -34,9 +34,4 @@ export class AuthService {
     const url = `${this.BASE_URL}/status`;
     return this.http.get<User>(url);
   }
-
-  // getUser(): Observable<User> {
-  //   const url = `${this.BASE_URL}/user`;
-  //   return this.http.get<User>(url);
-  // }
 }

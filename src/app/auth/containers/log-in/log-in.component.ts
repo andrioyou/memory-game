@@ -1,11 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs';
 
-import { User } from '../../models/user.model';
-import { AppState, selectAuthState } from '../../store/app.states';
-import { LogIn } from '../../store/actions/auth.actions';
+import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+
+import { Store } from '@ngrx/store';
+import { LogIn } from '../../store/auth.actions';
+import { AuthState } from '../../store/auth.reducers';
+import { selectAuthState } from '../../store/auth.states';
+
+import { User } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-log-in',
@@ -13,15 +16,13 @@ import { LogIn } from '../../store/actions/auth.actions';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit, OnDestroy {
-  user: User;
-  getState: Observable<any>;
+  getState: Observable<AuthState>;
   getStateSub: Subscription | null = null;
   errorMessage: string | null = null;
   isAuthenticated = false;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AuthState>) {
     this.getState = this.store.select(selectAuthState);
-    this.user = new User();
   }
 
   ngOnInit() {
@@ -37,11 +38,7 @@ export class LogInComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit(): void {
-    const payload = {
-      email: this.user.email,
-      password: this.user.password
-    };
-    this.store.dispatch(new LogIn(payload));
+  login(payload: User) {
+    this.store.dispatch(LogIn(payload));
   }
 }

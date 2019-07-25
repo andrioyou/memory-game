@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
 
-import { AppState, selectAuthState } from '../../../auth/store/app.states';
-import { LogOut } from '../../../auth/store/actions/auth.actions';
+import { Store } from '@ngrx/store';
+import { selectAuthState } from '../../../auth/store/auth.states';
+import { LogOut } from '../../../auth/store/auth.actions';
+import { AuthState } from '../../../auth/store/auth.reducers';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
@@ -13,12 +15,11 @@ import { AuthService } from '../../../auth/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  getState: Observable<any>;
+  getState: Observable<AuthState>;
   getStateSub: Subscription | null = null;
   isAuthenticated = false;
-  user = null;
 
-  constructor(private store: Store<AppState>, private authService: AuthService) {
+  constructor(private store: Store<AuthState>, private authService: AuthService) {
     this.getState = this.store.select(selectAuthState);
   }
 
@@ -35,6 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logOut(): void {
-    this.store.dispatch(new LogOut());
+    this.store.dispatch(LogOut());
   }
 }

@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // components
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './containers/header/header.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { HeadlineComponent } from './components/headline/headline.component';
 
 @NgModule({
-  declarations: [HeaderComponent, HomePageComponent],
+  declarations: [HeaderComponent, HomePageComponent, HeadlineComponent],
   imports: [CommonModule, RouterModule],
   exports: [HeaderComponent, HomePageComponent]
 })

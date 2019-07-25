@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyAccountComponent } from './my-account.component';
+import { HeaderComponent } from './header.component';
 
 // ngrx
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthEffects } from '../../store/effects/auth.effects';
-import { reducers } from '../../store/app.states';
+import { AuthEffects } from '../../../auth/store/auth.effects';
+import { reducers } from '../../../auth/store/auth.states';
 
 // http
 import { HttpClientModule } from '@angular/common/http';
@@ -14,13 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 // router
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('MyAccountComponent', () => {
-  let component: MyAccountComponent;
-  let fixture: ComponentFixture<MyAccountComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MyAccountComponent],
+      declarations: [HeaderComponent],
       imports: [
         EffectsModule.forRoot([AuthEffects]),
         StoreModule.forRoot(reducers),
@@ -31,12 +31,17 @@ describe('MyAccountComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyAccountComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should has base href link', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('[routerLink=""]').length).toBeGreaterThan(0);
   });
 });

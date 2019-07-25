@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // routing
 import { AppRoutingModule } from './app-routing.module';
 
-// components
+// component
 import { AppComponent } from './app.component';
 
 // modules
