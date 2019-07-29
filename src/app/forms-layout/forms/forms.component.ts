@@ -17,9 +17,7 @@ export class FormsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // this.skillsForm.valueChanges.subscribe(value => console.log(value));
-  }
+  ngOnInit() {}
 
   getSkillFormGroup(): FormGroup {
     return this.fb.group({

@@ -1,30 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/containers/header/header.component';
-import { ComponentFixture } from '@angular/core/testing';
+import { HeadlineComponent } from './shared/components/headline/headline.component';
 
-// ngrx
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { AuthEffects } from './auth/store/auth.effects';
-import { reducers } from './auth/store/auth.states';
-
-// http
-import { HttpClientModule } from '@angular/common/http';
-
-// router
+// modules
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './auth/store/auth.reducers';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        EffectsModule.forRoot([AuthEffects]),
-        StoreModule.forRoot(reducers),
-        HttpClientModule
-      ],
-      declarations: [AppComponent, HeaderComponent]
+      imports: [RouterTestingModule, HttpClientTestingModule, StoreModule.forRoot({ auth: reducer })],
+      declarations: [AppComponent, HeaderComponent, HeadlineComponent]
     }).compileComponents();
   }));
 

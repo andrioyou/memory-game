@@ -26,7 +26,7 @@ import { AuthEffects } from './store/auth.effects';
 import { TokenInterceptor } from './services/token.interceptor';
 import { ErrorInterceptor } from './services/token.interceptor';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
-import { reducers } from './store/auth.states';
+import { reducer } from './store/auth.reducers';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 
@@ -38,8 +38,8 @@ import { AccountInfoComponent } from './components/account-info/account-info.com
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    EffectsModule.forRoot([AuthEffects]),
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot({ auth: reducer }),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     AuthService,

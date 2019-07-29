@@ -1,4 +1,9 @@
-<app-login-form *ngIf="!isAuthenticated" (formSubmit)="login($event)" [message]="errorMessage"></app-login-form>
+<app-login-form
+  *ngIf="!isAuthenticated"
+  (formSubmit)="login($event)"
+  [message]="errorMessage"
+  [verifStatus]="verification"
+></app-login-form>
 
 <div *ngIf="isAuthenticated" class="container">
   <div class="row">

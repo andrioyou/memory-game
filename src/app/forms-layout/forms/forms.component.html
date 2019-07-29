@@ -56,8 +56,8 @@
     </div>
   </form>
 
-  <div class="value" *ngIf="skillsValue">
+  <div *ngIf="skillsValue">
     <h4>Value is:</h4>
-    {{ skillsValue | json }}
+    <p class="value">{{ skillsValue | json }}</p>
   </div>
 </div>

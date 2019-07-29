@@ -1,15 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyAccountComponent } from './my-account.component';
+import { AccountInfoComponent } from '../../components/account-info/account-info.component';
 
 // ngrx
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AuthEffects } from '../../store/auth.effects';
-import { reducers } from '../../store/auth.states';
+import { reducer } from '../../store/auth.reducers';
 
 // http
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 // router
 import { RouterTestingModule } from '@angular/router/testing';
@@ -20,11 +21,11 @@ describe('MyAccountComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MyAccountComponent],
+      declarations: [MyAccountComponent, AccountInfoComponent],
       imports: [
         EffectsModule.forRoot([AuthEffects]),
-        StoreModule.forRoot(reducers),
-        HttpClientModule,
+        StoreModule.forRoot({ auth: reducer }),
+        HttpClientTestingModule,
         RouterTestingModule
       ]
     }).compileComponents();

@@ -8,7 +8,7 @@ import { LogIn } from '../../store/auth.actions';
 import { AuthState } from '../../store/auth.reducers';
 import { selectAuthState } from '../../store/auth.states';
 
-import { User } from '../../interfaces/user.interface';
+import { LoginData } from '../../interfaces/login-data.interface';
 
 @Component({
   selector: 'app-log-in',
@@ -20,6 +20,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   getStateSub: Subscription | null = null;
   errorMessage: string | null = null;
   isAuthenticated = false;
+  verification = false;
 
   constructor(private store: Store<AuthState>) {
     this.getState = this.store.select(selectAuthState);
@@ -29,6 +30,7 @@ export class LogInComponent implements OnInit, OnDestroy {
     this.getStateSub = this.getState.subscribe(state => {
       this.errorMessage = state.errorMessage;
       this.isAuthenticated = state.isAuthenticated;
+      this.verification = false;
     });
   }
 
@@ -38,7 +40,8 @@ export class LogInComponent implements OnInit, OnDestroy {
     }
   }
 
-  login(payload: User) {
+  login(payload: LoginData) {
+    this.verification = true;
     this.store.dispatch(LogIn(payload));
   }
 }

@@ -1,11 +1,22 @@
 <div class="container">
-  <p>
-    <span class="holder">Email:</span> <span class="highlight">{{ email }}</span>
-  </p>
-  <p>
-    <span class="holder">First Name:</span> <span class="highlight">{{ firstName }}</span>
-  </p>
-  <p>
-    <span class="holder">Last Name:</span> <span class="highlight">{{ lastName }}</span>
-  </p>
+  <div *ngIf="user" class="user">
+    <p *ngIf="user.name">
+      <span class="holder">Name:</span> <span class="highlight">{{ user.name }}</span>
+    </p>
+    <p *ngIf="user.email">
+      <span class="holder">Email:</span> <span class="highlight">{{ user.email }}</span>
+    </p>
+    <p *ngIf="user.age">
+      <span class="holder">Age:</span> <span class="highlight">{{ user.age }}</span>
+    </p>
+    <p *ngIf="user.createdAt">
+      <span class="holder">Created:</span> <span class="highlight">{{ user.createdAt }}</span>
+    </p>
+    <p *ngIf="user.updatedAt">
+      <span class="holder">Update:</span> <span class="highlight">{{ user.updatedAt }}</span>
+    </p>
+  </div>
+  <div *ngIf="!user">
+    <p>Loading...</p>
+  </div>
 </div>

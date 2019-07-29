@@ -28,7 +28,7 @@ describe('GuessWindowComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('current image element should be greater or equal 0', () => {
+  it('initially current image element should be greater or equal 0', () => {
     const comp = new GuessWindowComponent();
     const currentEl = comp.currentEl;
     expect(currentEl).toBeGreaterThanOrEqual(0);
@@ -45,5 +45,35 @@ describe('GuessWindowComponent', () => {
     comp.complete();
     const win = comp.win;
     expect(win).toBeTruthy();
+  });
+
+  it('after restart values should be set to default', () => {
+    component.win = true;
+    component.message = 'test';
+    component.currentEl = 100500;
+    component.restart();
+    expect(component.win).toEqual(false);
+    expect(component.message).toEqual('Guess picture name');
+    expect(component.currentEl).toEqual(0);
+  });
+
+  it('component should import pictures', () => {
+    expect(component.pictures.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('nextPicture method should switch to next item if present', () => {
+    expect(component.pictures.length).toBeGreaterThanOrEqual(2);
+    if (component.pictures.length > 2) {
+      const currentEl = component.currentEl;
+      component.nextPicture();
+      expect(component.currentEl).toEqual(currentEl + 1);
+    }
+  });
+
+  it('nextPicture method should complete game if not more items present', () => {
+    component.currentEl = component.pictures.length - 1;
+    component.nextPicture();
+    expect(component.win).toEqual(true);
+    expect(component.message).toEqual('Сongratulations! you won!');
   });
 });

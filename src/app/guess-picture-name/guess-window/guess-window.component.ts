@@ -8,7 +8,7 @@ import { Picture } from '../interfaces/picture.interface';
   styleUrls: ['./guess-window.component.scss']
 })
 export class GuessWindowComponent implements OnInit {
-  pictures: Picture[] = [];
+  readonly pictures: Picture[] = [];
   message = 'Guess picture name';
   currentEl = 0;
   win = false;
@@ -20,7 +20,7 @@ export class GuessWindowComponent implements OnInit {
   ngOnInit() {}
 
   nextPicture() {
-    if (!(this.currentEl + 1 >= this.pictures.length)) {
+    if (this.currentEl + 1 < this.pictures.length) {
       this.currentEl++;
     } else {
       this.complete();

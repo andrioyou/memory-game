@@ -1,8 +1,9 @@
 export interface User {
+  age: number;
+  createdAt: string;
   email: string;
-  password: string;
-
-  token?: string;
-  firstName?: string;
-  lastName?: string;
+  name: string;
+  updatedAt: string;
+  __v?: number;
+  _id?: string;
 }

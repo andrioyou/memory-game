@@ -17,8 +17,8 @@
       <td>{{ item.dateCreated }}</td>
       <td>{{ item.dateTodo }}</td>
       <td>
-        <button (click)="removeItem(i)">Remove</button>
-        <button (click)="editItem(i)">Edit</button>
+        <button class="remove" (click)="removeItem(i)">Remove</button>
+        <button class="edit" (click)="editItem(i)">Edit</button>
       </td>
     </tr>
   </table>

@@ -9,8 +9,8 @@
     "test-no-watch": "ng test --no-watch",
     "e2e": "ng e2e",
     "format:fix": "pretty-quick --staged",
-    "precommit": "run-s format:fix lint",
     "lint": "ng lint",
+    "precommit": "run-s format:fix lint",
     "format:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\""
   },
   "private": true,

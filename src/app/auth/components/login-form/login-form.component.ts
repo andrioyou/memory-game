@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { User } from '../../interfaces/user.interface';
+import { LoginData } from '../../interfaces/login-data.interface';
 
 @Component({
   selector: 'app-login-form',
@@ -8,10 +8,11 @@ import { User } from '../../interfaces/user.interface';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  @Output() formSubmit = new EventEmitter<User>();
+  @Output() formSubmit = new EventEmitter<LoginData>();
   @Input() message = '';
+  @Input() verifStatus = false;
   loginForm: FormGroup;
-  user: User | null = null;
+  loginData: LoginData | null = null;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = new FormGroup({
@@ -23,10 +24,10 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    this.user = {
+    this.loginData = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     };
-    this.formSubmit.emit(this.user);
+    this.formSubmit.emit(this.loginData);
   }
 }

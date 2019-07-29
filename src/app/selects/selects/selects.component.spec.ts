@@ -48,4 +48,14 @@ describe('SelectsComponent', () => {
       expect(component.buttonAdd).toBeFalsy();
     }
   });
+
+  it('should containe at least one select item', () => {
+    expect(component.selects.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('removeSelect method should decrease displayed selects length on 1 item', () => {
+    const length = component.selectsDisplayed.length;
+    component.removeSelect(0);
+    expect(component.selectsDisplayed.length).toEqual(length - 1);
+  });
 });

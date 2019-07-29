@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Item } from './interfaces/item.interface';
-import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
@@ -29,7 +28,7 @@ export class TodoService {
 
   getList() {
     if (!this.getBrowserSupport()) {
-      return;
+      return [];
     }
     const list = localStorage.getItem(this.localStorageName);
     if (list) {

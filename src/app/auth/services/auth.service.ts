@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-
-import { User } from '../interfaces/user.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private BASE_URL = 'http://localhost:1337';
+  private BASE_URL = 'https://cors-anywhere.herokuapp.com/https://secure-thicket-43598.herokuapp.com';
 
   constructor(private http: HttpClient) {}
 
@@ -20,18 +18,18 @@ export class AuthService {
     return localStorage.getItem('token') ? true : false;
   }
 
-  logIn(email: string, password: string): Observable<User> {
-    const url = `${this.BASE_URL}/login`;
-    return this.http.post<User>(url, { email, password });
+  logIn(email: string, password: string) {
+    const url = this.BASE_URL + '/users/login';
+    return this.http.post(url, { email, password });
   }
 
-  signUp(email: string, password: string): Observable<User> {
-    const url = `${this.BASE_URL}/register`;
-    return this.http.post<User>(url, { email, password });
+  signUp(email: string, name: string, password: string) {
+    const url = this.BASE_URL + '/users';
+    return this.http.post(url, { email, name, password });
   }
 
-  getStatus(): Observable<User> {
-    const url = `${this.BASE_URL}/status`;
-    return this.http.get<User>(url);
+  getUserInfo(): Observable<any> {
+    const url = this.BASE_URL + '/users/me';
+    return this.http.get(url);
   }
 }

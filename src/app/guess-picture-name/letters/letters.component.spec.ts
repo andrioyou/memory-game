@@ -30,4 +30,20 @@ describe('LettersComponent', () => {
     const listLength = comp.correctLettersList.length;
     expect(listLength).toBe(0);
   });
+
+  it('should emit event if correct letters list is equal to initial word', () => {
+    component.correctLettersList = 'test'.split('');
+    component.word = 'test';
+    spyOn(component.solved, 'emit');
+    component.checkResult();
+    expect(component.solved.emit).toHaveBeenCalled();
+  });
+
+  it('should not emit event if correct letters list is not matching to initial word', () => {
+    component.correctLettersList = 'qwerty'.split('');
+    component.word = 'test';
+    spyOn(component.solved, 'emit');
+    component.checkResult();
+    expect(component.solved.emit).not.toHaveBeenCalled();
+  });
 });

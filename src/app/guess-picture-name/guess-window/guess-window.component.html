@@ -1,17 +1,20 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-xl-8 col-lg-10">
-      <h3 class="title">{{ message }}</h3>
+      <div class="content" *ngIf="pictures.length">
+        <h3 class="title">{{ message }}</h3>
 
-      <div class="content-holder" *ngIf="pictures[currentEl] && !win">
-        <app-image [imgUrl]="pictures[currentEl]['imgUrl']"></app-image>
-        <app-info [active]="currentEl + 1" [length]="pictures.length"></app-info>
-        <app-letters [word]="pictures[currentEl]['word']" (solved)="nextPicture($event)"></app-letters>
-      </div>
+        <div class="content-holder" *ngIf="pictures[currentEl] && !win">
+          <app-image [imgUrl]="pictures[currentEl]['imgUrl']"></app-image>
+          <app-info [active]="currentEl + 1" [length]="pictures.length"></app-info>
+          <app-letters [word]="pictures[currentEl]['word']" (solved)="nextPicture($event)"></app-letters>
+        </div>
 
-      <div class="button-holder" *ngIf="win">
-        <button mat-raised-button (click)="restart()">Restart</button>
+        <div class="button-holder" *ngIf="win">
+          <button mat-raised-button (click)="restart()">Restart</button>
+        </div>
       </div>
+      <p *ngIf="!pictures.length">Sorry, there is no pictures</p>
     </div>
   </div>
 </div>

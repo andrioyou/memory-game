@@ -5,12 +5,17 @@ import { Router } from '@angular/router';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 
 // rxjs
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
 // service
 import { AuthService } from './auth.service';
+
+// ngrx
+import { Store } from '@ngrx/store';
+import { AuthState } from '../store/auth.reducers';
+import { LogOut } from '../store/auth.actions';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -35,13 +40,14 @@ export class TokenInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<AuthState>) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).catch((response: any) => {
       if (response instanceof HttpErrorResponse && response.status === 401) {
-        localStorage.removeItem('token');
-        this.router.navigateByUrl('/log-in');
+        // localStorage.removeItem('token');
+        // this.router.navigateByUrl('/log-in');
+        this.store.dispatch(LogOut());
       }
       return Observable.throw(response);
     });
