@@ -38,8 +38,8 @@ import { AccountInfoComponent } from './components/account-info/account-info.com
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: reducer }),
-    EffectsModule.forRoot([AuthEffects])
+    StoreModule.forFeature('auth', reducer),
+    EffectsModule.forFeature([AuthEffects])
   ],
   providers: [
     AuthService,
