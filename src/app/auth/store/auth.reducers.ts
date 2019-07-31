@@ -3,12 +3,12 @@ import { LogInSuccess, LogInFailure, LogOut } from './auth.actions';
 
 export interface AuthState {
   isAuthenticated: boolean;
-  errorMessage: string | null;
+  errorMessage: string;
 }
 
 export const initialState: AuthState = {
   isAuthenticated: localStorage.getItem('token') ? true : false,
-  errorMessage: null
+  errorMessage: ''
 };
 
 const authReducer = createReducer(
@@ -17,7 +17,7 @@ const authReducer = createReducer(
     return {
       ...state,
       isAuthenticated: true,
-      errorMessage: null
+      errorMessage: ''
     };
   }),
   on(LogInFailure, state => {

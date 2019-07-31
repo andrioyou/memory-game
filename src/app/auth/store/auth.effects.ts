@@ -17,6 +17,7 @@ import { AuthService } from '../services/auth.service';
 
 // interfaces
 import { LoginData } from '../interfaces/login-data.interface';
+import { AuthResponse } from '../interfaces/auth-response.interface';
 
 @Injectable()
 export class AuthEffects {
@@ -40,7 +41,7 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(LogInSuccess.type),
-        tap((response: any) => {
+        tap((response: AuthResponse) => {
           localStorage.setItem('token', response.token);
           this.router.navigateByUrl('/');
         })

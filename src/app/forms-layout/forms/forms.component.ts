@@ -13,7 +13,7 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.skillsForm = new FormGroup({
-      skills: new FormArray([this.getSkillFormGroup()])
+      skills: new FormArray([this.getSkillFormGroup()], Validators.required)
     });
   }
 
@@ -33,10 +33,6 @@ export class FormsComponent implements OnInit {
 
   removeSkill(i: number) {
     (this.skillsForm.get('skills') as FormArray).removeAt(i);
-  }
-
-  onSubmit() {
-    this.skillsValue = this.skillsForm.value;
   }
 
   get controls() {

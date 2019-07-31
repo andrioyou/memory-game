@@ -1,0 +1,16 @@
+<div class="log-in" *ngIf="getState$ | async as state">
+  <app-login-form
+    *ngIf="!state.isAuthenticated"
+    (formSubmit)="login($event)"
+    [message]="state.errorMessage"
+    [isLoading]="verification"
+  ></app-login-form>
+
+  <div class="container" *ngIf="state.isAuthenticated">
+    <div class="row">
+      <div class="col-md-6">
+        <p>You are already logged in.</p>
+      </div>
+    </div>
+  </div>
+</div>

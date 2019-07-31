@@ -49,6 +49,19 @@
     "use-pipe-transform-interface": true,
     "curly": [true],
     "no-shadowed-variable": false
+    // "rx-ninja-subscribe-takeuntil": [
+    //   true,
+    //   "takeUntil",
+    //   "untilComponentDestroyed"
+    // ]
   },
-  "rulesDirectory": ["codelyzer"]
+  "rulesDirectory": [
+    "codelyzer"
+    // "node_modules/@w11k/rx-ninja/dist/tslint_rules"
+  ],
+  "linterOptions": {
+    "exclude": [
+      // "/**/*.spec.ts"
+    ]
+  }
 }

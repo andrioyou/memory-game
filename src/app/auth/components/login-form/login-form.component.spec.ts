@@ -42,13 +42,4 @@ describe('LoginFormComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('input[type="password"]').length).toBe(1);
   });
-
-  it('after form submit login data shoud contain values', () => {
-    component.loginForm.patchValue({
-      email: 'test',
-      password: 'test'
-    });
-    component.onSubmit();
-    expect(component.loginData).toBeTruthy();
-  });
 });

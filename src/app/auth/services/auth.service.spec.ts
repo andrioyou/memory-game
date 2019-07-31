@@ -4,11 +4,7 @@ import { AuthService } from './auth.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-// import { of } from 'rxjs';
-
 describe('AuthService', () => {
-  // let httpClientSpy: { get: jasmine.Spy } | null = null;
-  // let authService: AuthService | null = null;
   let httpTestingController: HttpTestingController | null = null;
   let service: AuthService | null = null;
 
@@ -17,8 +13,6 @@ describe('AuthService', () => {
       imports: [HttpClientTestingModule],
       providers: [AuthService]
     });
-    // httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    // authService = new AuthService(httpClientSpy as any);
 
     httpTestingController = TestBed.get(HttpTestingController);
     service = TestBed.get(AuthService);

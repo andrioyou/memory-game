@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // components
-import { LogInComponent } from './containers/log-in/log-in.component';
-import { MyAccountComponent } from './containers/my-account/my-account.component';
+import { LogInComponent } from './container/log-in/log-in.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 // routing
 import { RouterModule } from '@angular/router';
@@ -25,13 +25,11 @@ import { AuthService } from './services/auth.service';
 import { AuthEffects } from './store/auth.effects';
 import { TokenInterceptor } from './services/token.interceptor';
 import { ErrorInterceptor } from './services/token.interceptor';
-import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './guards/auth.guard';
 import { reducer } from './store/auth.reducers';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { AccountInfoComponent } from './components/account-info/account-info.component';
 
 @NgModule({
-  declarations: [LogInComponent, MyAccountComponent, LoginFormComponent, AccountInfoComponent],
+  declarations: [LogInComponent, LoginFormComponent],
   imports: [
     CommonModule,
     FormsModule,

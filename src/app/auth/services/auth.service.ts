@@ -1,13 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
-  private BASE_URL = 'https://cors-anywhere.herokuapp.com/https://secure-thicket-43598.herokuapp.com';
-
   constructor(private http: HttpClient) {}
 
   getToken(): string | null {
@@ -19,17 +15,10 @@ export class AuthService {
   }
 
   logIn(email: string, password: string) {
-    const url = this.BASE_URL + '/users/login';
-    return this.http.post(url, { email, password });
+    return this.http.post(`${environment.apiUrl}/users/login`, { email, password });
   }
 
   signUp(email: string, name: string, password: string) {
-    const url = this.BASE_URL + '/users';
-    return this.http.post(url, { email, name, password });
-  }
-
-  getUserInfo(): Observable<any> {
-    const url = this.BASE_URL + '/users/me';
-    return this.http.get(url);
+    return this.http.post(`${environment.apiUrl}/users`, { email, name, password });
   }
 }

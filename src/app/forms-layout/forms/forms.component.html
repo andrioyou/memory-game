@@ -46,11 +46,7 @@
     </div>
 
     <div class="button">
-      <button
-        type="submit"
-        (click)="onSubmit()"
-        [disabled]="!skillsForm.valid || this.skillsForm.controls.skills.value.length === 0"
-      >
+      <button type="submit" [disabled]="!skillsForm.valid">
         Submit
       </button>
     </div>
@@ -58,6 +54,6 @@
 
   <div *ngIf="skillsValue">
     <h4>Value is:</h4>
-    <p class="value">{{ skillsValue | json }}</p>
+    <p class="value">{{ skillsForm.value | json }}</p>
   </div>
 </div>

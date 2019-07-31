@@ -16,7 +16,7 @@
       <span class="holder">Update:</span> <span class="highlight">{{ user.updatedAt }}</span>
     </p>
   </div>
-  <div *ngIf="!user">
+  <div *ngIf="isLoading">
     <p>Loading...</p>
   </div>
 </div>

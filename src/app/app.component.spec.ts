@@ -1,10 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/containers/header/header.component';
-import { HeadlineComponent } from './shared/components/headline/headline.component';
+import { HeaderComponent } from './shared/header/header.component';
 
-// modules
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -15,7 +13,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule, StoreModule.forRoot({ auth: reducer })],
-      declarations: [AppComponent, HeaderComponent, HeadlineComponent]
+      declarations: [AppComponent, HeaderComponent]
     }).compileComponents();
   }));
 

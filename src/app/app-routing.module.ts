@@ -2,13 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // components
-import { LogInComponent } from './auth/containers/log-in/log-in.component';
-import { MyAccountComponent } from './auth/containers/my-account/my-account.component';
-
-import { HomePageComponent } from './shared/components/home-page/home-page.component';
+import { LogInComponent } from './auth/container/log-in/log-in.component';
+import { HomePageComponent } from './shared/home-page/home-page.component';
 
 // Auth
-import { AuthGuardService as AuthGuard } from './auth/services/auth-guard.service';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -39,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'my-account',
-    component: MyAccountComponent,
+    loadChildren: () => import('./my-account/my-account.module').then(mod => mod.MyAccountModule),
     canActivate: [AuthGuard]
   },
   {

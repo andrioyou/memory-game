@@ -6,7 +6,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 
 // rxjs
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/do';
+import { throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
 
 // service
@@ -24,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private injector: Injector) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.authService = this.injector.get(AuthService);
+    this.authService = this.injector.get<AuthService>(AuthService);
     if (this.authService) {
       const token: string | null = this.authService.getToken();
       request = request.clone({
@@ -45,11 +45,9 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).catch((response: any) => {
       if (response instanceof HttpErrorResponse && response.status === 401) {
-        // localStorage.removeItem('token');
-        // this.router.navigateByUrl('/log-in');
         this.store.dispatch(LogOut());
       }
-      return Observable.throw(response);
+      return throwError(response);
     });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Subscription } from 'rxjs';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 
 import { Store } from '@ngrx/store';
 import { LogIn } from '../../store/auth.actions';
@@ -16,29 +16,16 @@ import { LoginData } from '../../interfaces/login-data.interface';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit, OnDestroy {
-  getState: Observable<AuthState>;
-  getStateSub: Subscription | null = null;
-  errorMessage: string | null = null;
-  isAuthenticated = false;
+  getState$: Observable<AuthState> = this.store.select(selectAuthState);
   verification = false;
 
-  constructor(private store: Store<AuthState>) {
-    this.getState = this.store.select(selectAuthState);
-  }
+  constructor(private store: Store<AuthState>) {}
 
   ngOnInit() {
-    this.getStateSub = this.getState.subscribe(state => {
-      this.errorMessage = state.errorMessage;
-      this.isAuthenticated = state.isAuthenticated;
-      this.verification = false;
-    });
+    this.getState$.pipe(untilComponentDestroyed(this)).subscribe(() => (this.verification = false));
   }
 
-  ngOnDestroy() {
-    if (this.getStateSub) {
-      this.getStateSub.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
   login(payload: LoginData) {
     this.verification = true;
