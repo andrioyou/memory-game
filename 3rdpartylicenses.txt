@@ -74,6 +74,9 @@ MIT
 @ngrx/store
 MIT
 
+@ngxs/store
+MIT
+
 @w11k/ngx-componentdestroyed
 Apache-2.0
 
