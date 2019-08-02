@@ -1,0 +1,55 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+}
+
+.skill {
+  position: relative;
+  margin-bottom: 15px;
+  border: 1px solid $c-light;
+  padding: 15px;
+}
+
+.skill-title {
+  margin: 0 0 5px;
+}
+
+.skill-remove {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 3px 7px;
+}
+
+.group {
+  padding: 5px 0;
+
+  input {
+    &:not([type='radio']) {
+      width: 100%;
+      max-width: 350px;
+    }
+  }
+}
+
+.radio {
+  margin-top: 5px;
+}
+
+.button {
+  margin-top: 30px;
+}
+
+input {
+  &.ng-invalid {
+    &.ng-touched {
+      border-color: $c-red;
+    }
+  }
+}
+
+.alert {
+  margin: 5px 0;
+  font-size: 14px;
+}

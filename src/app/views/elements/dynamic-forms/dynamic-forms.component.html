@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Dynamic forms</h2>
+  <p>Form is representing 'skills' just for testing purpose.</p>
+
+  <form [formGroup]="form">
+    <div formArrayName="skills">
+      <div class="skill" *ngFor="let control of controls; let i = index">
+        <h4 class="skill-title">Skill</h4>
+        <div [formGroupName]="i">
+          <div class="group">
+            <input type="text" formControlName="name" placeholder="Skill *" />
+            <p
+              class="alert"
+              *ngIf="!form.get('skills.' + i + '.name').valid && form.get('skills.' + i + '.name').touched"
+            >
+              Please enter skill name (not 'test' or '123')
+            </p>
+          </div>
+          <div class="group">
+            <input type="text" formControlName="experience" placeholder="Experience" />
+          </div>
+          <div class="group">
+            <div class="radio" *ngFor="let level of levels">
+              <label> <input type="radio" [value]="level" formControlName="proficiency" /> {{ level }} </label>
+            </div>
+          </div>
+        </div>
+        <button class="skill-remove" type="button" (click)="removeItem(i)">&#10006;</button>
+      </div>
+    </div>
+
+    <div class="button">
+      <button type="button" (click)="addItem()">Add skill</button>
+    </div>
+
+    <div class="button">
+      <button type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
+  </form>
+
+  <h4>Value is:</h4>
+  <p class="value">{{ form.value | json }}</p>
+</div>

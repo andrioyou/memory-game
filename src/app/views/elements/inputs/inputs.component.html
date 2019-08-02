@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Inputs with masks</h2>
+  <p>Field for entering a phone number in the format of Ukraine</p>
+  <input name="number" type="text" prefix="+38 (0" mask="00) 000 00 00" [showMaskTyped]="true" />
+  <p>Field for entering the date of birth</p>
+  <input name="date" mask="d0/M0/0000" [showMaskTyped]="true" />
+  <p>Valid 24 hour format (hh/mm/ss)</p>
+  <input mask="Hh:m0:s0" name="time" [showMaskTyped]="true" />
+  <p>Mixed types</p>
+  <input mask="AAA 000-S0S" name="mixed" [showMaskTyped]="true" />
+</div>

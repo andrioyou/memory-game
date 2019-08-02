@@ -1,0 +1,22 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+}
+
+.alert {
+  margin: 15px 0;
+  border: 1px solid $c-red;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  max-width: 100px;
+}

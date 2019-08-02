@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="title">TODO List</h1>
+  <p class="status">{{ listStatus$ | async }}</p>
+  <table class="list">
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Date created/edited</th>
+      <th>Date Todo</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let item of list; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.dateCreated }}</td>
+      <td>{{ item.dateTodo }}</td>
+      <td>
+        <button class="remove" (click)="removeSelectedItem(i)">Remove</button>
+        <button class="edit" (click)="editSelectedItem(i)">Edit</button>
+      </td>
+    </tr>
+  </table>
+
+  <button class="add-new-item" (click)="openModal()">Add new</button>
+</div>
+<div class="modal" *ngIf="modalOpened">
+  <app-modal
+    (addItem)="addItem($event)"
+    (editItem)="editItem($event)"
+    (closeModal)="closeModal()"
+    [inputItem]="editableItem"
+  ></app-modal>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-10">
+      <div *ngIf="pictures.length" class="content">
+        <h3 class="title">{{ title }}</h3>
+        <div class="content-holder" *ngIf="pictures[currentIndex] && !isWin">
+          <app-image [imgUrl]="pictures[currentIndex]['imgUrl']"></app-image>
+          <app-info [active]="currentIndex + 1" [length]="pictures.length"></app-info>
+          <app-letters [word]="pictures[currentIndex]['word']" (solved)="nextPicture($event)"></app-letters>
+        </div>
+        <div class="button-holder" *ngIf="isWin">
+          <button mat-raised-button (click)="restart()">Restart</button>
+        </div>
+      </div>
+
+      <p *ngIf="!pictures.length">Sorry, there is no pictures</p>
+    </div>
+  </div>
+</div>

@@ -7,37 +7,43 @@ import { HomePageComponent } from './shared/home-page/home-page.component';
 
 // Auth
 import { AuthGuard } from './auth/guards/auth.guard';
+import { AuthNgxsComponent } from './auth-ngxs/container/auth-ngxs/auth-ngxs.component';
 
 const routes: Routes = [
   {
     path: 'memory-game',
-    loadChildren: () => import('./memory-game/memory-game.module').then(mod => mod.MemoryGameModule),
+    loadChildren: () => import('./views/memory-game/memory-game.module').then(mod => mod.MemoryGameModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'selects',
-    loadChildren: () => import('./selects/selects.module').then(mod => mod.SelectsModule),
+    loadChildren: () => import('./views/selects/selects.module').then(mod => mod.SelectsModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'guess-picture-name',
     loadChildren: () =>
-      import('./guess-picture-name/guess-picture-name.module').then(mod => mod.GuessPictureNameModule),
+      import('./views/guess-picture-name/guess-picture-name.module').then(mod => mod.GuessPictureNameModule),
     canActivate: [AuthGuard]
   },
   {
-    path: 'forms-layout',
-    loadChildren: () => import('./forms-layout/forms-layout.module').then(mod => mod.FormsLayoutModule),
+    path: 'elements',
+    loadChildren: () => import('./views/elements/elements.module').then(mod => mod.ElementsModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'todo',
-    loadChildren: () => import('./todo/todo.module').then(mod => mod.TodoModule),
+    loadChildren: () => import('./views/todo/todo.module').then(mod => mod.TodoModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'my-account',
-    loadChildren: () => import('./my-account/my-account.module').then(mod => mod.MyAccountModule),
+    loadChildren: () => import('./views/my-account/my-account.module').then(mod => mod.MyAccountModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'auth-ngxs',
+    component: AuthNgxsComponent,
     canActivate: [AuthGuard]
   },
   {

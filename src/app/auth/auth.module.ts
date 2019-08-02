@@ -18,13 +18,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // http
 import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // auth
 import { AuthService } from './services/auth.service';
 import { AuthEffects } from './store/auth.effects';
-import { TokenInterceptor } from './services/token.interceptor';
-import { ErrorInterceptor } from './services/token.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { reducer } from './store/auth.reducers';
 
@@ -39,19 +36,6 @@ import { reducer } from './store/auth.reducers';
     StoreModule.forFeature('auth', reducer),
     EffectsModule.forFeature([AuthEffects])
   ],
-  providers: [
-    AuthService,
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true
-    }
-  ]
+  providers: [AuthService, AuthGuard]
 })
 export class AuthModule {}
