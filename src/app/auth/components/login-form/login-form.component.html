@@ -1,27 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h1>Log in</h1>
-      <p *ngIf="message" class="message" role="alert">{{ message }}</p>
-      <form [formGroup]="loginForm">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input formControlName="email" id="email" name="email" type="email" placeholder="Your email" email required />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            formControlName="password"
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Your password"
-            required
-          />
-        </div>
-        <button type="submit" (click)="onSubmit()" [disabled]="!loginForm.valid">Submit</button>
-        <p *ngIf="isLoading">Loading ...</p>
-      </form>
-    </div>
+<h1>Log in</h1>
+<p *ngIf="alert" class="message" role="alert">{{ alert }}</p>
+<form [formGroup]="loginForm">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input formControlName="email" id="email" name="email" type="email" placeholder="Your email" email required />
   </div>
-</div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      formControlName="password"
+      id="password"
+      name="password"
+      type="password"
+      placeholder="Your password"
+      required
+    />
+  </div>
+  <button type="submit" (click)="onSubmit()" [disabled]="!loginForm.valid">Submit</button>
+</form>
+<p *ngIf="isLoading">Loading ...</p>

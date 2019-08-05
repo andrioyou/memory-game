@@ -18,6 +18,10 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/users/login`, { email, password });
   }
 
+  logOut() {
+    return this.http.post(`${environment.apiUrl}/users/logout`, {});
+  }
+
   signUp(email: string, name: string, password: string) {
     return this.http.post(`${environment.apiUrl}/users`, { email, name, password });
   }

@@ -8,13 +8,13 @@ import { LoginData } from '../../interfaces/login-data.interface';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  @Input() message = '';
+  @Input() alert = '';
   @Input() isLoading = false;
   @Output() formSubmit = new EventEmitter<LoginData>();
 
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', []),
-    password: new FormControl('', [])
+    email: new FormControl(),
+    password: new FormControl()
   });
 
   constructor() {}

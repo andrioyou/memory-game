@@ -10,7 +10,16 @@ import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import 'rxjs/add/observable/of';
 
 // actions
-import { LogIn, LogInSuccess, LogInFailure, LogOut } from './auth.actions';
+import {
+  LogIn,
+  LogInSuccess,
+  LogInFailure,
+  LogOut,
+  LogOutSuccess,
+  SignUp,
+  SignUpSuccess,
+  SignUpFailure
+} from './auth.actions';
 
 // service
 import { AuthService } from '../services/auth.service';
@@ -18,6 +27,7 @@ import { AuthService } from '../services/auth.service';
 // interfaces
 import { LoginData } from '../interfaces/login-data.interface';
 import { AuthResponse } from '../interfaces/auth-response.interface';
+import { SignUpData } from '../interfaces/sign-up-data.interface';
 
 @Injectable()
 export class AuthEffects {
@@ -28,9 +38,7 @@ export class AuthEffects {
       ofType(LogIn.type),
       mergeMap((payload: LoginData) => {
         return this.authService.logIn(payload.email, payload.password).pipe(
-          map((response: any) => {
-            return LogInSuccess(response);
-          }),
+          map((response: any) => LogInSuccess(response)),
           catchError(error => Observable.of(LogInFailure(error)))
         );
       })
@@ -54,18 +62,25 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(LogInFailure.type)
-        // tap((error) => {
-        //   console.log(error);
-        // })
+        // tap((error) => console.log(error))
       );
     },
     { dispatch: false }
   );
 
-  LogOut$ = createEffect(
+  LogOut$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LogOut.type),
+      mergeMap(() => {
+        return this.authService.logOut().pipe(map(() => LogOutSuccess()));
+      })
+    );
+  });
+
+  LogOutSucess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(LogOut.type),
+        ofType(LogOutSuccess.type),
         tap(() => {
           localStorage.removeItem('token');
           this.router.navigateByUrl('/');
@@ -74,4 +89,16 @@ export class AuthEffects {
     },
     { dispatch: false }
   );
+
+  SignUp$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SignUp.type),
+      mergeMap((payload: SignUpData) => {
+        return this.authService.signUp(payload.email, payload.name, payload.password).pipe(
+          map((response: any) => SignUpSuccess(response)),
+          catchError((error: any) => Observable.of(SignUpFailure(error)))
+        );
+      })
+    );
+  });
 }

@@ -1,13 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
-import { Observable } from 'rxjs';
-import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
-
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LogIn } from '../../store/auth.actions';
-import { AuthState } from '../../store/auth.reducers';
+import { Observable } from 'rxjs';
 import { selectAuthState } from '../../store/auth.states';
-
+import { AuthState } from '../../store/auth.reducers';
+import { LogIn } from '../../store/auth.actions';
 import { LoginData } from '../../interfaces/login-data.interface';
 
 @Component({
@@ -15,20 +11,14 @@ import { LoginData } from '../../interfaces/login-data.interface';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
-export class LogInComponent implements OnInit, OnDestroy {
+export class LogInComponent implements OnInit {
   getState$: Observable<AuthState> = this.store.select(selectAuthState);
-  verification = false;
 
   constructor(private store: Store<AuthState>) {}
 
-  ngOnInit() {
-    this.getState$.pipe(untilComponentDestroyed(this)).subscribe(() => (this.verification = false));
-  }
-
-  ngOnDestroy() {}
+  ngOnInit() {}
 
   login(payload: LoginData) {
-    this.verification = true;
     this.store.dispatch(LogIn(payload));
   }
 }

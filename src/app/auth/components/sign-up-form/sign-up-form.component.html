@@ -1,0 +1,29 @@
+<h1>Sign Up</h1>
+<p *ngIf="alert" class="alert" role="alert">{{ alert }}</p>
+<p *ngIf="message" class="message">{{ message }}</p>
+<form [formGroup]="signUpForm" autocomplete="off" *ngIf="!message">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input formControlName="email" id="email" name="email" type="email" placeholder="Your email" email required />
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input formControlName="name" id="name" name="name" type="text" placeholder="Your name" required />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      formControlName="password"
+      id="password"
+      name="password"
+      type="password"
+      placeholder="Your password"
+      required
+    />
+  </div>
+  <button type="submit" (click)="onSubmit()" [disabled]="!signUpForm.valid">Submit</button>
+</form>
+<p *ngIf="isLoading">Loading ...</p>
+<div class="success" *ngIf="message">
+  <button routerLink="/log-in">Log In</button>
+</div>

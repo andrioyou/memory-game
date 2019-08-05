@@ -24,9 +24,11 @@ import { AuthService } from './services/auth.service';
 import { AuthEffects } from './store/auth.effects';
 import { AuthGuard } from './guards/auth.guard';
 import { reducer } from './store/auth.reducers';
+import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
+import { SignUpComponent } from './container/sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [LogInComponent, LoginFormComponent],
+  declarations: [LogInComponent, LoginFormComponent, SignUpFormComponent, SignUpComponent],
   imports: [
     CommonModule,
     FormsModule,

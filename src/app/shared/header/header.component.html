@@ -12,8 +12,9 @@
       <a routerLink="/auth-ngxs" routerLinkActive="active" class="item">Auth Ngxs</a>
     </div>
     <div class="holder">
-      <button *ngIf="!isAuthenticated" routerLink="/log-in" routerLinkActive="active" class="item">Log In</button>
       <a *ngIf="isAuthenticated" routerLink="/my-account" routerLinkActive="active" class="item">My account</a>
+      <button *ngIf="!isAuthenticated" routerLink="/log-in" routerLinkActive="active" class="item">Log In</button>
+      <button *ngIf="!isAuthenticated" routerLink="/sign-up" class="item">Sign Up</button>
       <button *ngIf="isAuthenticated" class="item" (click)="logOut()">Log Out</button>
     </div>
   </div>

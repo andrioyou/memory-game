@@ -36,6 +36,14 @@
   }
 }
 
+button {
+  &.item {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
 .logo {
   text-transform: uppercase;
   color: $c-black;
