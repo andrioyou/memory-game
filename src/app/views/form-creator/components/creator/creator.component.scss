@@ -1,0 +1,8 @@
+@import '~src/assets/scss/global';
+
+:host {
+  display: block;
+  border: 1px solid $c-light;
+  border-radius: 5px;
+  padding: 30px 15px;
+}

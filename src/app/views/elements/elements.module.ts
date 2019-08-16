@@ -8,9 +8,7 @@ import { InputsComponent } from './inputs/inputs.component';
 import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { NgxMaskModule } from 'ngx-mask';
-
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({

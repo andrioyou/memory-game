@@ -1,0 +1,11 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div *ngFor="let control of controls" class="form-row">
+      <app-element [control]="control" [form]="form"></app-element>
+    </div>
+
+    <button type="submit" [disabled]="!form.valid">submit</button>
+  </form>
+
+  <p><strong>Following values are: </strong><br />{{ form.value | json }}</p>
+</div>

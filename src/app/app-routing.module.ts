@@ -41,6 +41,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'form-creator',
+    loadChildren: () => import('./views/form-creator/form-creator.module').then(mod => mod.FormCreatorModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'auth-ngxs',
     component: AuthNgxsComponent,
     canActivate: [AuthGuard]
