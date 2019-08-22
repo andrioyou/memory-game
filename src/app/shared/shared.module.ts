@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// routing
 import { RouterModule } from '@angular/router';
-
-// components
-import { HeaderComponent } from './header/header.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import * as fromComponents from './components';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -15,8 +12,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [HeaderComponent, HomePageComponent],
-  imports: [CommonModule, RouterModule, MatButtonModule, DragDropModule, MatFormFieldModule, MatSelectModule],
-  exports: [HeaderComponent, HomePageComponent]
+  declarations: [...fromComponents.components],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatButtonModule,
+    DragDropModule,
+    MatFormFieldModule,
+    MatSelectModule
+  ],
+  exports: [...fromComponents.components, ReactiveFormsModule]
 })
 export class SharedModule {}

@@ -1,0 +1,47 @@
+@import '~src/styles/global';
+
+:host {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.label-text {
+  display: block;
+  padding-bottom: 5px;
+}
+
+.radio-button {
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+.error {
+  display: block;
+  padding-top: 2px;
+  color: $c-error;
+  font-size: 13px;
+}
+
+.ng-touched {
+  &.ng-invalid {
+    border-color: $c-error;
+  }
+}
+
+.form-array {
+  margin-bottom: 10px;
+  border-left: 1px solid $c-light;
+  padding-left: 15px;
+}
+
+.control {
+  position: relative;
+}
+
+.remove {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+}

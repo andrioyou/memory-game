@@ -5,8 +5,8 @@ import { HeaderComponent } from './header.component';
 // ngrx
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthEffects } from '../../auth/store/auth.effects';
-import { reducer } from '../../auth/store/auth.reducers';
+import { AuthEffects } from '../../../auth/store/auth.effects';
+import { reducer } from '../../../auth/store/auth.reducers';
 
 // http
 import { HttpClientTestingModule } from '@angular/common/http/testing';

@@ -1,8 +1,79 @@
-@import '~src/assets/scss/global';
+@import '~src/styles/global';
 
 :host {
   display: block;
   border: 1px solid $c-light;
   border-radius: 5px;
   padding: 30px 15px;
+}
+
+h2 {
+  margin: 0 0 30px;
+}
+
+h3 {
+  margin: 15px 0;
+}
+
+.control {
+  border: 1px solid $c-light;
+  border-radius: 5px;
+  padding: 15px;
+
+  &:not(:last-of-type) {
+    margin-bottom: 15px;
+  }
+}
+
+.control-unit {
+  &:not(:last-of-type) {
+    margin-bottom: 15px;
+  }
+}
+
+.control-title {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.control-data-item {
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+}
+
+.button {
+  margin-top: 15px;
+}
+
+.error {
+  display: block;
+  padding-top: 2px;
+  color: $c-error;
+  font-size: 13px;
+}
+
+.ng-touched {
+  &.ng-invalid {
+    border-color: $c-error;
+  }
+}
+
+.options {
+  margin-top: 10px;
+}
+
+.option {
+  margin-right: 2px;
+  margin-bottom: 2px;
+  border: 1px solid $c-light;
+  border-radius: 5px;
+  padding: 3px 7px;
+}
+
+.submit {
+  padding: 10px 20px;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }

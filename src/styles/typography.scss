@@ -1,0 +1,130 @@
+@import '~src/styles/global';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $f-primary;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  transition: all 0.3s;
+  text-decoration: none;
+  color: $c-active;
+
+  &:hover {
+    color: lighten($c-active, 15%);
+  }
+}
+
+p {
+  line-height: 1.5;
+}
+
+input {
+  transition: all 0.3s;
+  margin: 0;
+  outline: none;
+  border: 1px solid $c-light;
+  border-radius: 5px;
+  background-color: $c-white;
+  padding: 6px 10px;
+  width: 100%;
+  max-width: 250px;
+
+  &[type='checkbox'],
+  &[type='radio'] {
+    border: 0;
+    padding: 0;
+    width: auto;
+    max-width: none;
+  }
+
+  &:read-only {
+    cursor: not-allowed;
+  }
+
+  &:not(:read-only) {
+    &:hover {
+      border-color: lighten($c-active, 20%);
+    }
+
+    &:focus {
+      border-color: $c-active;
+    }
+  }
+}
+
+select {
+  outline: none;
+  border: 1px solid $c-light;
+  border-radius: 5px;
+  background-color: $c-white;
+  padding: 6px 10px;
+  width: 100%;
+  max-width: 250px;
+
+  &:hover {
+    border-color: lighten($c-active, 20%);
+  }
+
+  &:focus {
+    border-color: $c-active;
+  }
+}
+
+button {
+  transition: all 0.3s;
+  outline: none;
+  border: 1px solid $c-active;
+  border-radius: 5px;
+  background-color: $c-active;
+  cursor: pointer;
+  padding: 6px 15px;
+  color: $c-white;
+  font-size: 14px;
+  font-weight: 700;
+
+  &:hover {
+    background-color: $c-white;
+    color: $c-active;
+  }
+
+  &:disabled,
+  &[disabled] {
+    border-color: $c-grey;
+    background-color: $c-grey;
+    cursor: default;
+
+    &:hover {
+      color: $c-white;
+    }
+  }
+}
+
+hr {
+  display: block;
+  margin: 1em 0;
+  border: 0;
+  border-top: 1px solid $c-light;
+  padding: 0;
+  height: 1px;
+}
+
+pre {
+  border-radius: 15px;
+  background-color: lighten($c-light, 5%);
+  padding: 15px;
+}

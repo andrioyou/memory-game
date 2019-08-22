@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class TodoService {
-  localStorageName = 'todoList';
+  localStorageName = 'todo-list';
   private statusSubject = new BehaviorSubject<string>('test');
   status = this.statusSubject.asObservable();
 

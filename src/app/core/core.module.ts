@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 // browser
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +15,7 @@ import { NgxsModule } from '@ngxs/store';
 
 // services
 import { LocalstorageService } from './services/localstorage.service';
+import { ValidationService } from './services/validation.service';
 
 // interceptors
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -28,7 +30,7 @@ import { ErrorInterceptor } from '../core/interceptors/token.interceptor';
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    NgxsModule.forRoot()
+    NgxsModule.forRoot([], { developmentMode: !environment.production })
   ],
   providers: [
     LocalstorageService,
@@ -41,7 +43,8 @@ import { ErrorInterceptor } from '../core/interceptors/token.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }
+    },
+    ValidationService
   ]
 })
 export class CoreModule {}

@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';

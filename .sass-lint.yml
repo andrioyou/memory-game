@@ -15,4 +15,4 @@ rules:
     - allow-rgba: true
   hex-notation:
     - 1
-    - style: uppercase
+    - style: lowercase

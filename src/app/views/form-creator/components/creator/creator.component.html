@@ -1,1 +1,2 @@
-<h3>Create your form</h3>
+<h2>Creator</h2>
+<app-form *ngIf="creatorItem" [item]="creatorItem" (onSubmit)="addItemToList($event)"></app-form>

@@ -1,0 +1,44 @@
+<div [formGroup]="form">
+  <ng-container [ngSwitch]="element.typeOfControl">
+    <ng-container *ngSwitchCase="'input'">
+      <label>
+        <span class="label-text">{{ element.label }}</span>
+        <input [formControlName]="element.name" [type]="element.type" />
+      </label>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'select'">
+      <label>
+        <span class="label-text">{{ element.label }}</span>
+        <select [formControlName]="element.name">
+          <option *ngFor="let option of element.options" [value]="option">{{ option }}</option>
+        </select>
+      </label>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'radio-button'">
+      <div class="radio-button">
+        <span class="label-text">{{ element.label }}</span>
+        <label *ngFor="let option of element.options">
+          <input [formControlName]="element.name" [checked]="element.value === option" type="radio" [value]="option" />
+          {{ option }}
+        </label>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'form-array'">
+      <h4>{{ element.label }}</h4>
+      <div class="form-array" [formArrayName]="element.name">
+        <div class="control" *ngFor="let item of formArrayControls; let i = index">
+          <div *ngFor="let arrayElement of element.elements">
+            <app-form-control [element]="arrayElement" [form]="form.get(element.name + '.' + i)"></app-form-control>
+          </div>
+          <button class="remove" (click)="removeFormArrayItem(i)">&#10005;</button>
+        </div>
+        <button class="add" (click)="addFormArrayItem()">Add</button>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <span class="error" *ngIf="!isValid">{{ element.label }} is not valid</span>
+</div>

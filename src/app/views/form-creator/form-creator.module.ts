@@ -2,22 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // modules
-import { ReactiveFormsModule } from '@angular/forms';
 import { FormCreatorRoutingModule } from './form-creator-routing.module';
+import { SharedModule } from '@app/shared/shared.module';
 
 // components
 import { CreatorComponent } from './components/creator/creator.component';
-import { ElementComponent } from './components/element/element.component';
 import { FormComponent } from './components/form/form.component';
 import { FormCreatorContainerComponent } from './container/form-creator-container/form-creator-container.component';
+import { FormControlComponent } from './components/form/form-control/form-control.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FormsListComponent } from './components/forms-list/forms-list.component';
 
 // services
-import { FormControlService } from './services/form-control.service';
-import { FormService } from './services/form.service';
+import { FormsListService } from './services/forms-list.service';
+import { BuilderService } from './services/builder.service';
 
 @NgModule({
-  declarations: [CreatorComponent, ElementComponent, FormComponent, FormCreatorContainerComponent],
-  imports: [CommonModule, ReactiveFormsModule, FormCreatorRoutingModule],
-  providers: [FormControlService, FormService]
+  declarations: [
+    CreatorComponent,
+    FormComponent,
+    FormCreatorContainerComponent,
+    FormControlComponent,
+    DashboardComponent,
+    FormsListComponent
+  ],
+  imports: [CommonModule, FormCreatorRoutingModule, SharedModule],
+  providers: [FormsListService, BuilderService]
 })
 export class FormCreatorModule {}

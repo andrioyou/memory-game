@@ -1,4 +1,7 @@
-export class ElementSelect {
+import { IElementBase } from '../interfaces/element-base.interface';
+
+export class ElementSelect implements IElementBase {
+  typeOfControl = 'select';
   options: string[];
   name: string;
   value: string;
