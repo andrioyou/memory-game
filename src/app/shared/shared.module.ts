@@ -17,11 +17,18 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    MatButtonModule,
     DragDropModule,
+    MatButtonModule,
     MatFormFieldModule,
     MatSelectModule
   ],
-  exports: [...fromComponents.components, ReactiveFormsModule]
+  exports: [
+    ...fromComponents.components,
+    ReactiveFormsModule,
+    DragDropModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
+  ]
 })
 export class SharedModule {}
