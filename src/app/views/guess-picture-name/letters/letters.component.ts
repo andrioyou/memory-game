@@ -1,10 +1,20 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-letters',
   templateUrl: './letters.component.html',
-  styleUrls: ['./letters.component.scss']
+  styleUrls: ['./letters.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LettersComponent implements OnInit, OnChanges {
   @Input() word!: string;

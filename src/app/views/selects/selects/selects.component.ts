@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { Select } from '../interfaces/select.interface';
 import { selects } from '../selects.const';
 
 @Component({
   selector: 'app-selects',
   templateUrl: './selects.component.html',
-  styleUrls: ['./selects.component.scss']
+  styleUrls: ['./selects.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectsComponent implements OnInit {
   @ViewChildren('selectEl') selectElements: any;

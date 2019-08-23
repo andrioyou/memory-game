@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-forms',
   templateUrl: './dynamic-forms.component.html',
-  styleUrls: ['./dynamic-forms.component.scss']
+  styleUrls: ['./dynamic-forms.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormsComponent {
   form: FormGroup;
