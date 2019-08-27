@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, AbstractControl, FormControl, FormArray } from '@angular/forms';
 import { BuilderService } from '@app/views/form-creator/services/builder.service';
 import { IElementBase } from '@app/views/form-creator/interfaces/element-base.interface';
@@ -8,13 +8,11 @@ import { IElementBase } from '@app/views/form-creator/interfaces/element-base.in
   templateUrl: './form-control.component.html',
   styleUrls: ['./form-control.component.scss']
 })
-export class FormControlComponent implements OnInit {
+export class FormControlComponent {
   @Input() form!: FormGroup;
   @Input() element!: IElementBase;
 
   constructor(private builderService: BuilderService) {}
-
-  ngOnInit() {}
 
   get isValid() {
     return this.form.controls[this.element.name].valid;

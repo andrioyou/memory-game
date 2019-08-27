@@ -46,6 +46,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'posts',
+    loadChildren: () => import('./views/posts/posts.module').then(mod => mod.PostsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'auth-ngxs',
     component: AuthNgxsComponent,
     canActivate: [AuthGuard]

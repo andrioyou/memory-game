@@ -18,6 +18,11 @@
     margin-right: 30px;
   }
 
+  &.logo,
+  &.auth {
+    flex-shrink: 0;
+  }
+
   &.menu {
     margin-right: auto;
   }
@@ -25,10 +30,11 @@
 
 .item {
   display: inline-block;
-  font-size: 14px;
+  margin: 3px 0;
+  font-size: 13px;
 
   &:not(:last-child) {
-    margin-right: 30px;
+    margin-right: 25px;
   }
 
   &.active {

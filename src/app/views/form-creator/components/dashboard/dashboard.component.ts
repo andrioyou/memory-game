@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IForm } from '../../interfaces/form.interface';
 
 @Component({
@@ -6,12 +6,10 @@ import { IForm } from '../../interfaces/form.interface';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   selectedItem!: IForm;
 
   constructor() {}
-
-  ngOnInit() {}
 
   selectItem(item: IForm) {
     this.selectedItem = item;

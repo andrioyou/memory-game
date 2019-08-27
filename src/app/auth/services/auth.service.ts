@@ -15,14 +15,14 @@ export class AuthService {
   }
 
   logIn(email: string, password: string) {
-    return this.http.post(`${environment.apiUrl}/users/login`, { email, password });
+    return this.http.post(`${environment.authUrl}/users/login`, { email, password });
   }
 
   logOut() {
-    return this.http.post(`${environment.apiUrl}/users/logout`, {});
+    return this.http.post(`${environment.authUrl}/users/logout`, {});
   }
 
   signUp(email: string, name: string, password: string) {
-    return this.http.post(`${environment.apiUrl}/users`, { email, name, password });
+    return this.http.post(`${environment.authUrl}/users`, { email, name, password });
   }
 }

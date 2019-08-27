@@ -1,6 +1,6 @@
 <div class="container">
   <div class="header">
-    <div class="holder">
+    <div class="holder logo">
       <a routerLink="" class="item logo">Trainee Projects</a>
     </div>
     <div *ngIf="isAuthenticated" class="holder menu">
@@ -11,8 +11,9 @@
       <a routerLink="/todo" routerLinkActive="active" class="item">Todo</a>
       <a routerLink="/auth-ngxs" routerLinkActive="active" class="item">Auth Ngxs</a>
       <a routerLink="/form-creator" routerLinkActive="active" class="item">Form creator</a>
+      <a routerLink="/posts" routerLinkActive="active" class="item">Posts</a>
     </div>
-    <div class="holder">
+    <div class="holder auth">
       <a *ngIf="isAuthenticated" routerLink="/my-account" routerLinkActive="active" class="item">My account</a>
       <button *ngIf="!isAuthenticated" routerLink="/log-in" routerLinkActive="active" class="item">Log In</button>
       <button *ngIf="!isAuthenticated" routerLink="/sign-up" class="item">Sign Up</button>

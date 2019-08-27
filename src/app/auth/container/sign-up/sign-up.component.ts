@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SignUpData } from '@app/auth/interfaces/sign-up-data.interface';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -11,12 +11,10 @@ import { SignUp } from '../../store/auth.actions';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
   getState$: Observable<AuthState> = this.store.select(selectAuthState);
 
   constructor(private store: Store<AuthState>) {}
-
-  ngOnInit() {}
 
   signUp(payload: SignUpData) {
     this.store.dispatch(SignUp(payload));

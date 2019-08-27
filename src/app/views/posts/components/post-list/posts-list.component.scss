@@ -1,0 +1,15 @@
+@import '~src/styles/global';
+
+:host {
+  display: block;
+  padding: 60px 0;
+}
+
+.post {
+  border: 1px solid $c-light;
+  padding: 15px;
+
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+}

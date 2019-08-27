@@ -11,12 +11,10 @@ import { LoginData } from '../../interfaces/login-data.interface';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent {
   getState$: Observable<AuthState> = this.store.select(selectAuthState);
 
   constructor(private store: Store<AuthState>) {}
-
-  ngOnInit() {}
 
   login(payload: LoginData) {
     this.store.dispatch(LogIn(payload));

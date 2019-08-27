@@ -8,6 +8,6 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   getAccountInfo() {
-    return this.http.get<User>(`${environment.apiUrl}/users/me`);
+    return this.http.get<User>(`${environment.authUrl}/users/me`);
   }
 }

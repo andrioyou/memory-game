@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { LoginData } from '../../interfaces/login-data.interface';
 
 @Component({
@@ -8,20 +8,16 @@ import { LoginData } from '../../interfaces/login-data.interface';
   styleUrls: ['./login-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
   @Input() alert!: string;
   @Output() LogInSubmit = new EventEmitter<LoginData>();
 
-  loginForm: FormGroup;
+  loginForm = new FormGroup({
+    email: new FormControl(),
+    password: new FormControl()
+  });
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
-    });
-  }
-
-  ngOnInit() {}
+  constructor() {}
 
   submit() {
     this.LogInSubmit.emit(this.loginForm.value);

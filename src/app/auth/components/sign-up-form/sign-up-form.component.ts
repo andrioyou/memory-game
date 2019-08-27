@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { SignUpData } from '../../interfaces/sign-up-data.interface';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./sign-up-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignUpFormComponent implements OnInit {
+export class SignUpFormComponent {
   @Input() message = '';
   @Input() alert = '';
   @Input() isLoading = false;
@@ -21,8 +21,6 @@ export class SignUpFormComponent implements OnInit {
   });
 
   constructor() {}
-
-  ngOnInit() {}
 
   onSubmit() {
     this.formSubmit.emit(this.signUpForm.value);
