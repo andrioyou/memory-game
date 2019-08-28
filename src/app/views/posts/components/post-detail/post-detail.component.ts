@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IPost } from '../../interfaces/post.interface';
 import { Location } from '@angular/common';
+import { IComment } from '../../interfaces/comment.interface';
 
 @Component({
   selector: 'app-post-detail',
@@ -9,6 +10,7 @@ import { Location } from '@angular/common';
 })
 export class PostDetailComponent {
   @Input() post!: IPost;
+  @Input() comments!: IComment[];
 
   constructor(private location: Location) {}
 

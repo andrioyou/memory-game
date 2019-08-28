@@ -1,23 +1,25 @@
 import { State, Store, StateContext, Action } from '@ngxs/store';
-import { tap, mergeMap, filter, map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { IPost } from '../interfaces/post.interface';
 import { IComment } from '../interfaces/comment.interface';
-import { GetPosts, GetPost, ClearPost } from './posts.actions';
+import { GetPosts, GetPost, ClearPost, GetPostComments, ClearPostComments } from './posts.actions';
 import { PostsService } from '../services/posts.service';
 
 export interface IPostsState {
+  // post list page
   list: IPost[];
-  activePost: {
-    post: IPost;
-    comments: IComment[];
-  } | null;
+
+  // post detail page
+  post: IPost | null;
+  comments: IComment[] | null;
 }
 
 @State<IPostsState>({
   name: 'posts',
   defaults: {
     list: [],
-    activePost: null
+    post: null,
+    comments: null
   }
 })
 export class PostsState {
@@ -33,29 +35,21 @@ export class PostsState {
 
   @Action(GetPost)
   getPost(ctx: StateContext<IPostsState>, { id }: { id: number }) {
-    return this.postsService
-      .getPost(id)
-      .pipe(
-        mergeMap(() =>
-          this.postsService
-            .getPostComments(id)
-            .pipe(map((comments: IComment[]) => comments.filter(comment => comment.postId === +id)))
-        )
-      )
-      .pipe(
-        tap((result: any) => {
-          console.log(result);
-        })
-      );
-    // this.postsService.getPost(id).pipe(
-    //   tap((post: IPost) => {
-    //     ctx.patchState({ activePost: { post, comments: [] } });
-    //   })
-    // );
+    return this.postsService.getPost(id).pipe(tap((post: IPost) => ctx.patchState({ post })));
+  }
+
+  @Action(GetPostComments)
+  getPostComments(ctx: StateContext<IPostsState>, { id }: { id: number }) {
+    return this.postsService.getPostComments(id).pipe(tap((comments: IComment[]) => ctx.patchState({ comments })));
   }
 
   @Action(ClearPost)
   clearPost(ctx: StateContext<IPostsState>) {
-    ctx.patchState({ activePost: null });
+    ctx.patchState({ post: null });
+  }
+
+  @Action(ClearPostComments)
+  clearPostComments(ctx: StateContext<IPostsState>) {
+    ctx.patchState({ comments: null });
   }
 }

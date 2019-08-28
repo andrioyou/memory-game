@@ -1,9 +1,21 @@
+@import '~src/styles/global';
+
 :host {
   display: block;
+  padding: 60px 0;
 }
 
 .post {
   text-align: center;
+}
+
+.comments {
+  margin-top: 60px;
+}
+
+.comment {
+  border-left: 2px solid $c-light;
+  padding-left: 15px;
 }
 
 a {

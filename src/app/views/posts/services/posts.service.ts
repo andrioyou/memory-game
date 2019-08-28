@@ -19,6 +19,6 @@ export class PostsService {
   }
 
   getPostComments(id: number) {
-    return this.http.get<IComment[]>(`${environment.dataUrl}/posts/${id}/comments`);
+    return this.http.get<IComment[]>(`${environment.dataUrl}/comments?postId=${id}`);
   }
 }
