@@ -1,0 +1,8 @@
+<div class="container">
+  <div *ngIf="post" class="post">
+    <h1>{{ post.id }}. {{ post.title }}</h1>
+    <p>{{ post.body }}</p>
+    <h5>Author ID - {{ post.userId }}</h5>
+  </div>
+  <a href="#" (click)="goBack($event)">Go back</a>
+</div>

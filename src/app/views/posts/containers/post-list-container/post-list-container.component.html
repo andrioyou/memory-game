@@ -1,0 +1,3 @@
+<ng-container *ngIf="state$ | async as state">
+  <app-post-list [postsList]="state.list"></app-post-list>
+</ng-container>

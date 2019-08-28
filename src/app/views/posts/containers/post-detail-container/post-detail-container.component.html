@@ -1,0 +1,3 @@
+<ng-container *ngIf="state$ | async as state">
+  <app-post-detail [post]="state.post"></app-post-detail>
+</ng-container>

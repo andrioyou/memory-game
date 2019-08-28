@@ -1,0 +1,10 @@
+<div class="container list">
+  <ng-container *ngIf="postsList">
+    <div class="post" *ngFor="let post of postsList">
+      <h4>{{ post.id }}. {{ post.title }}</h4>
+      <p>{{ post.body }}</p>
+      <h6>Author ID - {{ post.userId }}</h6>
+      <a [routerLink]="'/posts/' + post.id">Read more</a>
+    </div>
+  </ng-container>
+</div>
