@@ -28,6 +28,5 @@ export class PostDetailContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.store.dispatch(new ClearPost());
     this.store.dispatch(new ClearPostComments());
-    this.state$.subscribe(d => console.log(d));
   }
 }

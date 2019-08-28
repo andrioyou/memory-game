@@ -7,6 +7,7 @@ import { HomePageComponent } from './shared/components/home-page/home-page.compo
 import { LogInComponent } from './auth/container/log-in/log-in.component';
 import { SignUpComponent } from './auth/container/sign-up/sign-up.component';
 import { AuthNgxsComponent } from './auth-ngxs/container/auth-ngxs/auth-ngxs.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -68,13 +69,17 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
+    path: '404',
+    component: NotFoundComponent
+  },
+  {
     path: '**',
-    redirectTo: '/'
+    redirectTo: '/404'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
