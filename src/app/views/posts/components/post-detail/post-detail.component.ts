@@ -15,8 +15,7 @@ export class PostDetailComponent {
 
   constructor(private location: Location) {}
 
-  goBack(e: Event) {
-    e.preventDefault();
+  goBack() {
     this.location.back();
   }
 }

@@ -4,9 +4,7 @@ import { environment } from '@src/environments/environment';
 import { IPost } from '../interfaces/post.interface';
 import { IComment } from '../interfaces/comment.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PostsService {
   constructor(private http: HttpClient) {}
 

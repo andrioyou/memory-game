@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 // components
 import { LogInComponent } from './container/log-in/log-in.component';
@@ -30,6 +31,7 @@ import { SignUpComponent } from './container/sign-up/sign-up.component';
   declarations: [LogInComponent, LoginFormComponent, SignUpFormComponent, SignUpComponent],
   imports: [
     CommonModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

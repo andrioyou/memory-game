@@ -16,3 +16,6 @@ rules:
   hex-notation:
     - 1
     - style: lowercase
+  leading-zero:
+    - 2
+    - include: true

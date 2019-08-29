@@ -1,11 +1,15 @@
 <div class="container list">
   <h1>Posts list</h1>
-  <ng-container *ngIf="postsList">
-    <div class="post" *ngFor="let post of postsList">
-      <h4>{{ post.id }}. {{ post.title }}</h4>
-      <p>{{ post.body }}</p>
-      <h6>Author ID - {{ post.userId }}</h6>
-      <a [routerLink]="'/posts/' + post.id">Read more</a>
+  <div class="row" *ngIf="postsList">
+    <div class="col-md-6 col-lg-4 post" *ngFor="let post of postsList">
+      <mat-card>
+        <mat-card-title>{{ post.id }}. {{ post.title }}</mat-card-title>
+        <mat-card-content>
+          <p>{{ post.body }}</p>
+        </mat-card-content>
+        <mat-card-subtitle>Author ID - {{ post.userId }}</mat-card-subtitle>
+        <button [routerLink]="'/posts/' + post.id" mat-raised-button color="primary">Read more</button>
+      </mat-card>
     </div>
-  </ng-container>
+  </div>
 </div>

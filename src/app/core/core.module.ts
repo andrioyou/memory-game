@@ -1,4 +1,4 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
 
@@ -16,12 +16,12 @@ import { NgxsModule } from '@ngxs/store';
 // services
 import { LocalstorageService } from './services/localstorage.service';
 import { ValidationService } from './services/validation.service';
+import { ErrorDialogService } from './services/error-dialog.service';
 
 // interceptors
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../core/interceptors/token.interceptor';
 import { ErrorInterceptor } from '../core/interceptors/token.interceptor';
-import { ErrorService } from './services/error.service';
 
 @NgModule({
   declarations: [],
@@ -46,7 +46,7 @@ import { ErrorService } from './services/error.service';
       multi: true
     },
     ValidationService,
-    ErrorService
+    ErrorDialogService
   ]
 })
 export class CoreModule {}

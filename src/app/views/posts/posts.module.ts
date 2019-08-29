@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '@src/app/shared/shared.module';
 import { PostsRoutingModule } from './posts-routing.module';
 import { NgxsModule } from '@ngxs/store';
 import { PostsState } from './store/posts.state';
@@ -13,7 +14,7 @@ import { PostListComponent } from './components/post-list/post-list.component';
 
 @NgModule({
   declarations: [PostListContainerComponent, PostDetailContainerComponent, PostDetailComponent, PostListComponent],
-  imports: [CommonModule, PostsRoutingModule, NgxsModule.forFeature([PostsState])],
+  imports: [CommonModule, PostsRoutingModule, NgxsModule.forFeature([PostsState]), SharedModule],
   providers: [PostsService]
 })
 export class PostsModule {}

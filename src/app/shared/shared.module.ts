@@ -4,31 +4,22 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import * as fromComponents from './components';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 // Material
-import { MatButtonModule } from '@angular/material/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+
+const material = [MatButtonModule, DragDropModule, MatFormFieldModule, MatSelectModule, MatDialogModule, MatCardModule];
 
 @NgModule({
   declarations: [...fromComponents.components],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    DragDropModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ],
-  exports: [
-    ...fromComponents.components,
-    ReactiveFormsModule,
-    DragDropModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ]
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, ...material],
+  entryComponents: [ErrorDialogComponent],
+  exports: [...fromComponents.components, ...material, ReactiveFormsModule]
 })
 export class SharedModule {}
