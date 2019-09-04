@@ -1,10 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginFormComponent } from './login-form.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { LoginData } from '../../interfaces/login-data.interface';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -48,7 +44,7 @@ describe('LoginFormComponent', () => {
       email: 'test',
       password: 'test'
     });
-    component.onSubmit();
-    expect(component.loginData).toBeTruthy();
+    component.submit();
+    expect(component.loginForm.value).toBeTruthy();
   });
 });

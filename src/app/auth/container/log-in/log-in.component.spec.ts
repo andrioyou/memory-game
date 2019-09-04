@@ -42,11 +42,4 @@ describe('LogInComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('after login submit verification should be true', () => {
-    fixture = TestBed.createComponent(LogInComponent);
-    component = fixture.componentInstance;
-    component.login({ email: 'test', password: 'test' });
-    expect(component.verification).toBeTruthy();
-  });
 });

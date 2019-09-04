@@ -1,0 +1,6 @@
+<button (click)="addUser()">Add (Vita user)</button>
+<button (click)="deleteUser()">Delete (Liubko user)</button>
+<button (click)="editUser()">Edit (Andrew > Andriuha)</button>
+<div *ngIf="users$ | async as users">
+  <pre>{{ users | json }}</pre>
+</div>

@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 import { PostsState, IPostsState } from '../../store/posts.state';
-import { ClearPost, GetPost, GetPostComments, ClearPostComments } from '../../store/posts.actions';
+import { ClearPost, GetPost } from '../../store/posts.actions';
 
 @Component({
   selector: 'app-post-detail-container',
@@ -20,13 +20,11 @@ export class PostDetailContainerComponent implements OnInit, OnDestroy {
     this.route.params.pipe(untilComponentDestroyed(this)).subscribe((params: Params) => {
       if (params.id) {
         this.store.dispatch(new GetPost(params.id));
-        this.store.dispatch(new GetPostComments(params.id));
       }
     });
   }
 
   ngOnDestroy() {
     this.store.dispatch(new ClearPost());
-    this.store.dispatch(new ClearPostComments());
   }
 }

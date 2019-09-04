@@ -13,11 +13,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { DebounceClickDirective } from './directives/debounce-click.directive';
 
 const material = [MatButtonModule, DragDropModule, MatFormFieldModule, MatSelectModule, MatDialogModule, MatCardModule];
 
 @NgModule({
-  declarations: [...fromComponents.components],
+  declarations: [...fromComponents.components, DebounceClickDirective],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, ...material],
   entryComponents: [ErrorDialogComponent],
   exports: [...fromComponents.components, ...material, ReactiveFormsModule]

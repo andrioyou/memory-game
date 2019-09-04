@@ -97,25 +97,4 @@ describe('AuthService', () => {
       req.flush(mockResp);
     }
   });
-
-  it('getUserInfo returned Observable should match the right data', () => {
-    const mockUser = {
-      name: 'Test',
-      createAt: '12:00:00'
-    };
-
-    if (service && httpTestingController) {
-      service.getUserInfo().subscribe((resp: any) => {
-        expect(resp.name).toEqual('Test');
-      });
-
-      const req = httpTestingController.expectOne(
-        'https://cors-anywhere.herokuapp.com/https://secure-thicket-43598.herokuapp.com/users/me'
-      );
-
-      expect(req.request.method).toEqual('GET');
-
-      req.flush(mockUser);
-    }
-  });
 });

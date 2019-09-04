@@ -26,7 +26,6 @@ describe('ListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
-    component.ngOnInit();
     fixture.detectChanges();
   });
 
@@ -45,46 +44,46 @@ describe('ListComponent', () => {
     expect(component.modalOpened).toBeTruthy();
   });
 
-  it('should remove one item on button Remove click', () => {
-    // add dummy item
-    const item: Item = {
-      name: 'test',
-      type: 'test',
-      dateCreated: 'test',
-      dateTodo: 'test'
-    };
-    component.addItem({ item, index: null });
-    expect(component.list.length).toEqual(1);
+  // it('should remove one item on button Remove click', () => {
+  //   // add dummy item
+  //   const item: Item = {
+  //     name: 'test',
+  //     type: 'test',
+  //     dateCreated: 'test',
+  //     dateTodo: 'test'
+  //   };
+  //   component.addItem({ item, index: null });
+  //   expect(component.list.length).toEqual(1);
 
-    // remove dummy item on button click
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    const removeButton = compiled.querySelector('button.remove');
-    removeButton.click();
-    fixture.detectChanges();
+  //   // remove dummy item on button click
+  //   fixture.detectChanges();
+  //   const compiled = fixture.debugElement.nativeElement;
+  //   const removeButton = compiled.querySelector('button.remove');
+  //   removeButton.click();
+  //   fixture.detectChanges();
 
-    expect(component.list.length).toEqual(0);
-  });
+  //   expect(component.list.length).toEqual(0);
+  // });
 
-  it('should opem modal window and edit item on button Edit click', () => {
-    // add dummy item
-    const item: Item = {
-      name: 'test',
-      type: 'test',
-      dateCreated: 'test',
-      dateTodo: 'test'
-    };
-    component.addItem({ item, index: null });
-    fixture.detectChanges();
+  // it('should opem modal window and edit item on button Edit click', () => {
+  //   // add dummy item
+  //   const item: Item = {
+  //     name: 'test',
+  //     type: 'test',
+  //     dateCreated: 'test',
+  //     dateTodo: 'test'
+  //   };
+  //   component.addItem({ item, index: null });
+  //   fixture.detectChanges();
 
-    // edit item on button click
-    const spy = spyOn(component, 'openModal').and.callThrough();
-    const compiled = fixture.debugElement.nativeElement;
-    const removeButton = compiled.querySelector('button.edit');
-    removeButton.click();
-    fixture.detectChanges();
-    expect(spy).toHaveBeenCalled();
-    expect(component.editableItem).toBeTruthy();
-    expect(component.editableItemIndex).toBeGreaterThanOrEqual(0);
-  });
+  //   // edit item on button click
+  //   const spy = spyOn(component, 'openModal').and.callThrough();
+  //   const compiled = fixture.debugElement.nativeElement;
+  //   const removeButton = compiled.querySelector('button.edit');
+  //   removeButton.click();
+  //   fixture.detectChanges();
+  //   expect(spy).toHaveBeenCalled();
+  //   expect(component.editableItem).toBeTruthy();
+  //   expect(component.editableItemIndex).toBeGreaterThanOrEqual(0);
+  // });
 });
