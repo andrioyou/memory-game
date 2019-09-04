@@ -62,6 +62,10 @@ THE SOFTWARE.
 
 @angular/material/button
 
+@angular/material/card
+
+@angular/material/dialog
+
 @angular/platform-browser
 MIT
 
