@@ -1,12 +1,7 @@
 <div class="container" *ngIf="getState$ | async as state">
   <div class="row">
     <div class="col-md-6">
-      <app-sign-up-form
-        (formSubmit)="signUp($event)"
-        [isLoading]="state.verification"
-        [message]="state.successMessage"
-        [alert]="state.errorMessage"
-      >
+      <app-sign-up-form (formSubmit)="signUp($event)" [message]="state.successMessage" [alert]="state.errorMessage">
       </app-sign-up-form>
     </div>
   </div>

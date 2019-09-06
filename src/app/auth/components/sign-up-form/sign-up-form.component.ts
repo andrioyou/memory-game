@@ -11,7 +11,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class SignUpFormComponent {
   @Input() message = '';
   @Input() alert = '';
-  @Input() isLoading = false;
   @Output() formSubmit = new EventEmitter<SignUpData>();
 
   signUpForm: FormGroup = new FormGroup({
