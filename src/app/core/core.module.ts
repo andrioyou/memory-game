@@ -22,6 +22,8 @@ import { ErrorDialogService } from './services/error-dialog.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../core/interceptors/token.interceptor';
 import { ErrorInterceptor } from '../core/interceptors/token.interceptor';
+import { LoaderService } from './services/loader.service';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [],
@@ -45,8 +47,14 @@ import { ErrorInterceptor } from '../core/interceptors/token.interceptor';
       useClass: ErrorInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
     ValidationService,
-    ErrorDialogService
+    ErrorDialogService,
+    LoaderService
   ]
 })
 export class CoreModule {}

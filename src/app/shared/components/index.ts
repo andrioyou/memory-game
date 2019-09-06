@@ -4,6 +4,7 @@ import { ValidationMessageComponent } from './validation-message/validation-mess
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DialogGeneralComponent } from './dialog-general/dialog-general.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { LoaderComponent } from './loader/loader.component';
 
 export const components: any[] = [
   HeaderComponent,
@@ -11,5 +12,6 @@ export const components: any[] = [
   ValidationMessageComponent,
   NotFoundComponent,
   DialogGeneralComponent,
-  ErrorDialogComponent
+  ErrorDialogComponent,
+  LoaderComponent
 ];

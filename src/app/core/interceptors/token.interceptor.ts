@@ -1,12 +1,8 @@
-import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-
-import { Observable } from 'rxjs';
-import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
-
 import { LocalstorageService } from '../services/localstorage.service';
 
 @Injectable()

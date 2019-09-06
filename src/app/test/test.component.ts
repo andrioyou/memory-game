@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of, Observable, BehaviorSubject } from 'rxjs';
-import { withLatestFrom, map, tap } from 'rxjs/operators';
+import { of, Observable, Subject, merge } from 'rxjs';
+import { scan } from 'rxjs/operators';
 
 interface User {
   id: number;
@@ -28,84 +28,72 @@ const usersInput: User[] = [
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
-  initial$: Observable<User[]> = of(usersInput).pipe(
-    tap(users => {
-      this.modifiedSubject.next(users);
-    })
-  );
+  usersInput$: Observable<User[]> = of(usersInput);
 
   ACTIONS = {
     ADD: 'add',
     DELETE: 'delete',
     EDIT: 'edit'
   };
-  actionSubject = new BehaviorSubject<string>('');
+  actionSubject = new Subject<any>();
+  // actionSubject = new Subject<{ name: string, user: User }>();
   action$ = this.actionSubject.asObservable();
-
-  actionUserSubject = new BehaviorSubject<User>(usersInput[0]);
-  actionUser$ = this.actionUserSubject.asObservable();
-
-  modifiedSubject = new BehaviorSubject<User[]>([]);
-  modified$ = this.modifiedSubject.asObservable();
 
   users$!: Observable<User[]>;
 
   constructor() {}
 
   ngOnInit() {
-    this.users$ = this.action$.pipe(
-      withLatestFrom(this.actionUser$, this.initial$, this.modified$),
-      map(([action, actionUser, initial, modified]) => {
-        const users = this.doAction(action, actionUser, initial, modified);
-        this.updateModified(users);
-        return users;
+    this.users$ = merge(this.usersInput$, this.action$).pipe(
+      scan((users: User[], action: { name: string; user: User }) => {
+        return this.doAction(users, action);
       })
     );
   }
 
   addUser() {
-    this.actionUserSubject.next({
-      id: 4,
-      name: 'Vita'
+    this.actionSubject.next({
+      name: this.ACTIONS.ADD,
+      user: {
+        id: 4 + Math.random(),
+        name: 'Vita'
+      }
     });
-    this.actionSubject.next(this.ACTIONS.ADD);
   }
 
   deleteUser() {
-    this.actionUserSubject.next({
-      id: 3,
-      name: 'Liubko'
+    this.actionSubject.next({
+      name: this.ACTIONS.DELETE,
+      user: {
+        id: 1,
+        name: 'Andrew'
+      }
     });
-    this.actionSubject.next(this.ACTIONS.DELETE);
   }
 
   editUser() {
-    this.actionUserSubject.next({
-      id: 1,
-      name: 'Andriuha'
+    this.actionSubject.next({
+      name: this.ACTIONS.EDIT,
+      user: {
+        id: 2,
+        name: 'Katerina'
+      }
     });
-    this.actionSubject.next(this.ACTIONS.EDIT);
   }
 
-  updateModified(modified: User[]) {
-    this.modifiedSubject.next(modified);
-  }
-
-  doAction(action: string, actionUser: User, initial: User[], modified: User[]) {
-    switch (action) {
+  doAction(users: User[], action: { name: string; user: User }): User[] {
+    switch (action.name) {
       case this.ACTIONS.ADD:
-        modified.push(actionUser);
-        return modified;
+        return [...users, action.user];
       case this.ACTIONS.DELETE:
-        modified = modified.filter(user => user.id !== actionUser.id);
-        return modified;
+        return users.filter(user => user.id !== action.user.id);
       case this.ACTIONS.EDIT:
-        const i = modified.findIndex(user => user.id === actionUser.id);
+        const i = users.findIndex(user => user.id === action.user.id);
         if (i > -1) {
-          modified[i] = actionUser;
+          users[i] = action.user;
         }
-        return modified;
+        return users;
     }
-    return modified;
+    return users;
   }
 }

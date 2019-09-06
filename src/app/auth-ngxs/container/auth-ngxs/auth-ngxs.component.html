@@ -1,20 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h3>NGXS state is</h3>
-      <p>{{ state | json }}</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <app-login-form *ngIf="!state.isAuthenticated" [alert]="state.errorMessage" (LogInSubmit)="logIn($event)">
-      </app-login-form>
-      <div *ngIf="state.isAuthenticated">
-        <p>You are logged in.</p>
-        <button (click)="logOut()">Log Out</button>
+<ng-container *ngIf="authState$ | async as state">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>NGXS state is</h3>
+        <p>{{ state | json }}</p>
       </div>
-      <p *ngIf="isLoading">Loading...</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <app-login-form *ngIf="!state.isAuthenticated" [alert]="state.errorMessage" (LogInSubmit)="logIn($event)">
+        </app-login-form>
+        <div *ngIf="state.isAuthenticated">
+          <p>You are logged in.</p>
+          <button (click)="logOut()">Log Out</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>

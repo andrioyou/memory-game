@@ -1,22 +1,21 @@
-<div class="container">
-  <div *ngIf="user" class="user">
-    <p *ngIf="user.name">
-      <span class="holder">Name:</span> <span class="highlight">{{ user.name }}</span>
-    </p>
-    <p *ngIf="user.email">
-      <span class="holder">Email:</span> <span class="highlight">{{ user.email }}</span>
-    </p>
-    <p *ngIf="user.age">
-      <span class="holder">Age:</span> <span class="highlight">{{ user.age }}</span>
-    </p>
-    <p *ngIf="user.createdAt">
-      <span class="holder">Created:</span> <span class="highlight">{{ user.createdAt }}</span>
-    </p>
-    <p *ngIf="user.updatedAt">
-      <span class="holder">Update:</span> <span class="highlight">{{ user.updatedAt }}</span>
-    </p>
+<ng-container *ngIf="accountInfo$ | async as user">
+  <div class="container">
+    <div *ngIf="user" class="user">
+      <p *ngIf="user.name">
+        <span class="holder">Name:</span> <span class="highlight">{{ user.name }}</span>
+      </p>
+      <p *ngIf="user.email">
+        <span class="holder">Email:</span> <span class="highlight">{{ user.email }}</span>
+      </p>
+      <p *ngIf="user.age">
+        <span class="holder">Age:</span> <span class="highlight">{{ user.age }}</span>
+      </p>
+      <p *ngIf="user.createdAt">
+        <span class="holder">Created:</span> <span class="highlight">{{ user.createdAt }}</span>
+      </p>
+      <p *ngIf="user.updatedAt">
+        <span class="holder">Update:</span> <span class="highlight">{{ user.updatedAt }}</span>
+      </p>
+    </div>
   </div>
-  <div *ngIf="isLoading">
-    <p>Loading...</p>
-  </div>
-</div>
+</ng-container>
