@@ -10,7 +10,6 @@ import { LoginData } from '../../interfaces/login-data.interface';
 })
 export class LoginFormComponent {
   @Input() alert = '';
-  @Input() isLoading = false;
   @Output() formSubmit = new EventEmitter<LoginData>();
 
   loginForm: FormGroup = new FormGroup({

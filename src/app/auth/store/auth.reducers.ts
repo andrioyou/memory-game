@@ -12,7 +12,6 @@ import {
 
 export interface AuthState {
   isAuthenticated: boolean;
-  verification: boolean;
   errorMessage: string;
   successMessage: string;
 }
@@ -20,8 +19,7 @@ export interface AuthState {
 export const initialState: AuthState = {
   isAuthenticated: localStorage.getItem('token') ? true : false,
   errorMessage: '',
-  successMessage: '',
-  verification: false
+  successMessage: ''
 };
 
 const authReducer = createReducer(
@@ -29,57 +27,49 @@ const authReducer = createReducer(
   on(LogIn, state => {
     return {
       ...state,
-      verification: true,
       errorMessage: ''
     };
   }),
   on(LogInSuccess, state => {
     return {
       ...state,
-      isAuthenticated: true,
-      verification: false
+      isAuthenticated: true
     };
   }),
   on(LogInFailure, state => {
     return {
       ...state,
-      errorMessage: 'Incorrect email and/or password.',
-      verification: false
+      errorMessage: 'Incorrect email and/or password.'
     };
   }),
   on(LogOut, state => {
     return {
       ...state,
-      verification: true,
       successMessage: ''
     };
   }),
   on(LogOutSuccess, state => {
     return {
       ...state,
-      isAuthenticated: false,
-      verification: false
+      isAuthenticated: false
     };
   }),
   on(SignUp, state => {
     return {
       ...state,
-      verification: true,
       errorMessage: ''
     };
   }),
   on(SignUpSuccess, state => {
     return {
       ...state,
-      successMessage: 'You have successfully signed up.',
-      verification: false
+      successMessage: 'You have successfully signed up.'
     };
   }),
   on(SignUpFailure, state => {
     return {
       ...state,
-      errorMessage: 'User validation failed',
-      verification: false
+      errorMessage: 'User validation failed'
     };
   })
 );

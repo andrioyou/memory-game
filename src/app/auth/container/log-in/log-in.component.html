@@ -6,7 +6,6 @@
           *ngIf="!state.isAuthenticated"
           (formSubmit)="login($event)"
           [alert]="state.errorMessage"
-          [isLoading]="state.verification"
         ></app-login-form>
 
         <div *ngIf="state.isAuthenticated">
