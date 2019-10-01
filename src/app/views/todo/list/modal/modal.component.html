@@ -16,5 +16,5 @@
     <span class="text">Date Todo:</span>
     <input type="text" name="dateTodo" [ngModel]="dateTodo" mask="d0/M0/0000" [showMaskTyped]="true" />
   </label>
-  <button class="submit" type="submit" [disabled]="!todoForm.valid">Submit</button>
+  <button mat-raised-button color="primary" class="submit" type="submit" [disabled]="!todoForm.valid">Submit</button>
 </form>

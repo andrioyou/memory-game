@@ -1,9 +1,13 @@
 <div [formGroup]="form">
-  <ng-container [ngSwitch]="element.typeOfControl">
+  <ng-container *ngIf="isVisible" [ngSwitch]="element.typeOfControl">
     <ng-container *ngSwitchCase="'input'">
       <label>
         <span class="label-text">{{ element.label }}</span>
-        <input [formControlName]="element.name" [type]="element.type" />
+        <input
+          [formControlName]="element.name"
+          [type]="element.type"
+          [attr.disabled]="element.disabled.toString() === 'true' ? '' : null"
+        />
       </label>
     </ng-container>
 
@@ -33,12 +37,12 @@
           <div *ngFor="let arrayElement of element.elements">
             <app-form-control [element]="arrayElement" [form]="form.get(element.name + '.' + i)"></app-form-control>
           </div>
-          <button class="remove" (click)="removeFormArrayItem(i)">&#10005;</button>
+          <button mat-raised-button color="primary" class="remove" (click)="removeFormArrayItem(i)">&#10005;</button>
         </div>
-        <button class="add" (click)="addFormArrayItem()">Add</button>
+        <button mat-raised-button color="primary" class="add" (click)="addFormArrayItem()">Add</button>
       </div>
     </ng-container>
   </ng-container>
 
-  <span class="error" *ngIf="!isValid">{{ element.label }} is not valid</span>
+  <span class="error" *ngIf="!isValid">'{{ element.label }}' is not valid</span>
 </div>

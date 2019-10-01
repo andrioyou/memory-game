@@ -1,3 +1,3 @@
 <h2>Dashboard</h2>
-<app-forms-list (onItemSelect)="selectItem($event)"></app-forms-list>
-<app-form *ngIf="selectedItem" [item]="selectedItem"></app-form>
+<app-forms-list (onFormSelect)="selectForm($event)"></app-forms-list>
+<app-form *ngIf="selectedForm" [formElement]="selectedForm"></app-form>

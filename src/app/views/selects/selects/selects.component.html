@@ -15,7 +15,7 @@
           {{ selectEl.title }}</option
         >
       </select>
-      <button *ngIf="buttonRemove" (click)="removeSelect(i)">Remove</button>
+      <button mat-raised-button color="primary" *ngIf="buttonRemove" (click)="removeSelect(i)">Remove</button>
     </div>
     <div class="col-lg-6">
       <select *ngIf="selectsValues[i]">
@@ -23,5 +23,5 @@
       </select>
     </div>
   </div>
-  <button *ngIf="buttonAdd" (click)="addSelect()">Show more</button>
+  <button mat-raised-button color="primary" *ngIf="buttonAdd" (click)="addSelect()">Show more</button>
 </div>

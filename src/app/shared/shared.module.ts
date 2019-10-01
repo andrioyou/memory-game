@@ -15,10 +15,15 @@ import { DebounceClickDirective } from './directives/debounce-click.directive';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const material = [
   MatButtonModule,
@@ -27,7 +32,12 @@ const material = [
   MatSelectModule,
   MatDialogModule,
   MatCardModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatTableModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatCheckboxModule
 ];
 
 @NgModule({

@@ -1,0 +1,72 @@
+<div class="container">
+  <div [hidden]="!table">
+    <!-- Name -->
+    <h1 *ngIf="table && table.name">{{ table.name }}</h1>
+
+    <!-- Table -->
+    <div class="mat-elevation-z8">
+      <mat-table mat-table [dataSource]="dataSource" matSort>
+        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+          <!-- choose selectColumn or standardColumn cell -->
+          <ng-container *ngIf="column === 'select'; then selectColumn; else standardColumn"></ng-container>
+
+          <!-- select column cell -->
+          <ng-template #selectColumn>
+            <ng-container matColumnDef="select">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                  (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)"
+                  [aria-label]="checkboxLabel(row)"
+                >
+                </mat-checkbox>
+              </mat-cell>
+            </ng-container>
+          </ng-template>
+
+          <!-- standard header cell -->
+          <ng-template #standardColumn>
+            <mat-header-cell *matHeaderCellDef>
+              <span class="text">{{ column | propertyToLabel }}</span>
+              <ng-container *ngIf="column !== 'country'">
+                <input class="input" type="text" (keyup)="filterByColumn(column, $event.target.value)" />
+              </ng-container>
+              <ng-container *ngIf="column === 'country'">
+                <select (change)="filterByColumn(column, $event.target.value)">
+                  <option value="" selected>None</option>
+                  <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                </select>
+              </ng-container>
+              <div class="sort" mat-sort-header>Sort</div>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element[column] }}</mat-cell>
+          </ng-template>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+    </div>
+
+    <button class="donwload-btn" *ngIf="selection.hasValue()" mat-raised-button color="primary" (click)="download()">
+      Download selected data
+    </button>
+  </div>
+
+  <!-- If table was not provided -->
+  <ng-container *ngIf="!table">
+    <h4>Table was not provided.</h4>
+  </ng-container>
+</div>

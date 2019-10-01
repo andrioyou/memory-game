@@ -20,11 +20,13 @@ import { HttpClientModule } from '@angular/common/http';
 // auth
 import { AuthService } from './services/auth.service';
 import { AuthNgxsComponent } from './container/auth-ngxs/auth-ngxs.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LoginFormComponent, AuthNgxsComponent],
   imports: [
     CommonModule,
+    SharedModule,
     AuthNgxsRoutingModule,
     FormsModule,
     ReactiveFormsModule,

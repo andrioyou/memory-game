@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { IForm } from '../../interfaces/form.interface';
 import { FormsListService } from '../../services/forms-list.service';
 import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
+import { FormElement } from '../../models/form-element.model';
 
 @Component({
   selector: 'app-forms-list',
@@ -9,52 +9,47 @@ import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
   styleUrls: ['./forms-list.component.scss']
 })
 export class FormsListComponent implements OnInit, OnDestroy {
-  @Output() onItemSelect = new EventEmitter<IForm>();
+  @Output() onFormSelect = new EventEmitter<FormElement>();
 
-  list: IForm[] = [];
-  item: IForm | null = null;
-  currentName!: string;
+  formList: FormElement[] = [];
+  currentId = '';
 
   constructor(private formsListService: FormsListService) {}
 
   ngOnInit() {
-    this.formsListService.formsList$.pipe(untilComponentDestroyed(this)).subscribe(formsList => {
-      this.list = formsList;
-      if (!this.currentName) {
-        this.selectInitialFormItem();
-      }
-    });
+    this.formsListService
+      .getFormsList()
+      .pipe(untilComponentDestroyed(this))
+      .subscribe(list => {
+        this.formList = list;
+        if (!this.currentId) {
+          this.selectInitialFormItem();
+        }
+      });
   }
 
   ngOnDestroy() {}
 
   selectInitialFormItem() {
-    if (this.list.length) {
-      this.selectFormItem(this.list[0].formName);
+    if (this.formList.length) {
+      this.selectFormItem(this.formList[0]);
     }
   }
 
-  selectFormItem(name: string) {
-    if (name === this.currentName) {
-      return;
-    }
-
-    this.item = this.formsListService.getFormItem(name);
-    if (this.item) {
-      this.currentName = name;
-      this.onItemSelect.emit(this.item);
-    }
+  selectFormItem(form: FormElement) {
+    this.currentId = form.formId;
+    this.onFormSelect.emit(form);
   }
 
-  removeFormItem(name: string) {
-    this.formsListService.removeFormItem(name);
-  }
-
-  addDummyForm() {
-    this.formsListService.addDymmyToFormList();
+  removeFormItem(id: string) {
+    this.formsListService.removeFormItem(id);
   }
 
   clearFormsList() {
     this.formsListService.clearFormsList();
+  }
+
+  addDummyForm() {
+    this.formsListService.addDymmyToFormList();
   }
 }

@@ -1,13 +1,13 @@
 <h3>Forms list</h3>
 <hr />
 <div class="forms-list">
-  <div class="item" *ngFor="let item of list" [ngClass]="{ active: item.formName === currentName }">
-    <h4 class="item-title">{{ item.formName }}</h4>
-    <button class="item-button" (click)="selectFormItem(item.formName)">Select</button>
-    <button class="item-button" (click)="removeFormItem(item.formName)">Remove</button>
+  <div class="item" *ngFor="let form of formList" [ngClass]="{ active: form.formId === currentId }">
+    <h4 class="item-title">{{ form.formName }}</h4>
+    <button mat-raised-button color="primary" class="item-button" (click)="selectFormItem(form)">Select</button>
+    <button mat-raised-button color="primary" class="item-button" (click)="removeFormItem(form.formId)">Remove</button>
   </div>
 </div>
 <div class="forms-list-buttons">
-  <button class="forms-list-button" (click)="addDummyForm()">Add dummy form</button>
-  <!-- <button class="forms-list-button"(click)="clearFormsList()">Clear forms list</button> -->
+  <button mat-raised-button color="primary" class="forms-list-button" (click)="addDummyForm()">Add dummy form</button>
+  <!-- <button mat-raised-button color="primary" class="forms-list-button"(click)="clearFormsList()">Clear forms list</button> -->
 </div>

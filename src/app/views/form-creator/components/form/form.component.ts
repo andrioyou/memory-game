@@ -1,32 +1,35 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { BuilderService } from '../../services/builder.service';
-import { IForm } from '../../interfaces/form.interface';
+import { FormElement } from '../../models/form-element.model';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, OnChanges {
-  @Input() item!: IForm;
+export class FormComponent implements OnChanges {
+  @Input() formElement!: FormElement;
+  @Input() resetOnSubmit = false;
   @Output() onSubmit = new EventEmitter<any>();
 
   form!: FormGroup;
 
   constructor(private builderService: BuilderService) {}
 
-  ngOnInit() {
-    this.setForm();
-  }
-
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.item) {
+    if (changes.formElement) {
       this.setForm();
     }
   }
 
-  get formControls() {
+  setForm() {
+    if (this.formElement) {
+      this.form = this.builderService.toFormGroup(this.formElement);
+    }
+  }
+
+  formControls() {
     const controls: AbstractControl[] = [];
     Object.keys(this.form.controls).forEach(key => {
       controls.push(this.form.controls[key]);
@@ -34,13 +37,10 @@ export class FormComponent implements OnInit, OnChanges {
     return controls;
   }
 
-  setForm() {
-    if (this.item) {
-      this.form = this.builderService.toFormGroup(this.item);
-    }
-  }
-
   submit() {
     this.onSubmit.emit(this.form.value);
+    if (this.resetOnSubmit) {
+      this.form.reset();
+    }
   }
 }

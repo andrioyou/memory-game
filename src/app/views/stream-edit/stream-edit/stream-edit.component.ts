@@ -23,11 +23,11 @@ const usersInput: User[] = [
 ];
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  selector: 'app-stream-edit',
+  templateUrl: './stream-edit.component.html',
+  styleUrls: ['./stream-edit.component.scss']
 })
-export class TestComponent implements OnInit {
+export class StreamEditComponent implements OnInit {
   usersInput$: Observable<User[]> = of(usersInput);
 
   ACTIONS = {
@@ -36,7 +36,6 @@ export class TestComponent implements OnInit {
     EDIT: 'edit'
   };
   actionSubject = new Subject<any>();
-  // actionSubject = new Subject<{ name: string, user: User }>();
   action$ = this.actionSubject.asObservable();
 
   users$!: Observable<User[]>;

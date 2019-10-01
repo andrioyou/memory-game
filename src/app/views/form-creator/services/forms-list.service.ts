@@ -1,103 +1,108 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { IForm } from '../interfaces/form.interface';
-import { IElementBase } from '../interfaces/element-base.interface';
-import { ElementSelect } from '../models/element-select.model';
-import { ElementInput } from '../models/element-input.model';
-import { ElementFormArray } from '../models/element-form-array.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { SelectElement } from '../models/select-element.model';
+import { InputElement } from '../models/input-element.model';
+import { FormArrayElement } from '../models/form-array-element.model';
+import { RadioButtonElement } from '../models/radio-button-element.model';
+import { FormElement } from '../models/form-element.model';
 
 @Injectable()
 export class FormsListService {
   private storageName = 'forms-list';
-  formsList$: BehaviorSubject<IForm[]> = new BehaviorSubject<IForm[]>(this.getFormsList());
+  private formsListSubject: BehaviorSubject<FormElement[]> = new BehaviorSubject(this.getFormsStorageList());
+  private formsList$ = this.formsListSubject.asObservable();
 
-  getFormsList(): IForm[] {
+  private getFormsStorageList(): FormElement[] {
     const list = localStorage.getItem(this.storageName);
     return list ? JSON.parse(list) : [];
   }
 
-  setFormsList(list: IForm[]) {
+  private setFormsStorageList(list: FormElement[]) {
     localStorage.setItem(this.storageName, JSON.stringify(list));
     this.updateFormsList(list);
   }
 
-  updateFormsList(list: IForm[]) {
-    this.formsList$.next(list);
+  private updateFormsList(list: FormElement[]) {
+    this.formsListSubject.next(list);
   }
 
-  clearFormsList() {
-    this.setFormsList([]);
+  getFormsList(): Observable<FormElement[]> {
+    return this.formsList$;
   }
 
-  getFormItem(name: string): IForm | null {
-    const formsList = this.getFormsList();
+  getFormItem(id: string): FormElement | null {
+    const formsList = this.getFormsStorageList();
     let form = null;
     formsList.forEach(item => {
-      if (item.formName === name) {
+      if (item.formId === id) {
         form = item;
       }
     });
     return form;
   }
 
-  addFormItem(form: IForm) {
-    const list = this.getFormsList();
-    list.push(form);
-    this.setFormsList(list);
+  clearFormsList() {
+    this.setFormsStorageList([]);
   }
 
-  removeFormItem(name: string) {
-    let list = this.getFormsList();
-    list = list.filter(item => item.formName !== name);
-    this.setFormsList(list);
+  addFormItem(form: FormElement) {
+    const list = this.getFormsStorageList();
+    list.push(form);
+    this.setFormsStorageList(list);
+  }
+
+  removeFormItem(id: string) {
+    let list = this.getFormsStorageList();
+    list = list.filter(form => form.formId !== id);
+    this.setFormsStorageList(list);
   }
 
   addDymmyToFormList() {
-    const elements: IElementBase[] = [
-      // new ElementInput({
+    const elements: (FormArrayElement | InputElement | RadioButtonElement | SelectElement)[] = [
+      // new InputElement({
       //   type: 'text',
       //   name: 'First name',
       //   label: 'First name',
       //   required: true,
       // }),
 
-      // new ElementInput({
+      // new InputElement({
       //   type: 'text',
       //   name: 'Last name',
       //   label: 'Last name',
       // }),
 
-      // new ElementSelect({
+      // new SelectElement({
       //   options: ['1', '2', '3'],
       //   name: 'Quantity',
       //   label: 'Quantity',
       //   required: true,
       // }),
 
-      // new ElementRadioButton({
+      // new RadioButtonElement({
       //   options: ['true', 'false'],
       //   name: 'Go with',
       //   label: 'Go with',
       // }),
 
-      // new ElementInput({
+      // new InputElement({
       //   type: 'text',
       //   name: 'Your name',
       //   label: 'Your name',
       //   required: true,
       // }),
 
-      // new ElementFormArray({
+      // new FormArrayElement({
       //   name: 'Skills',
       //   label: 'Skills',
       //   elements: [
-      //     new ElementInput({
+      //     new InputElement({
       //       type: 'text',
       //       name: 'Name',
       //       label: 'Name',
       //       required: true,
       //     }),
-      //     new ElementInput({
+      //     new InputElement({
       //       type: 'text',
       //       name: 'Description',
       //       label: 'Description',
@@ -105,20 +110,20 @@ export class FormsListService {
       //   ],
       // }),
 
-      new ElementFormArray({
+      new FormArrayElement({
         name: 'Nested level 1',
         label: 'Nested level 1',
         elements: [
-          new ElementInput({
+          new InputElement({
             type: 'text',
             name: 'L 1',
             label: 'L 1'
           }),
-          new ElementFormArray({
+          new FormArrayElement({
             name: 'Nested level 2',
             label: 'Nested level 2',
             elements: [
-              new ElementInput({
+              new InputElement({
                 type: 'text',
                 name: 'L 2',
                 label: 'L 2'
@@ -129,10 +134,10 @@ export class FormsListService {
       })
     ];
 
-    const form: IForm = {
+    const form: FormElement = new FormElement({
       formName: 'Nested arrays',
       elements
-    };
+    });
 
     this.addFormItem(form);
   }

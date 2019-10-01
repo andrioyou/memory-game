@@ -1,0 +1,3 @@
+<ng-container *ngIf="tableState$ | async as tableState">
+  <app-table [table]="tableState.table"></app-table>
+</ng-container>

@@ -1,0 +1,8 @@
+<div class="container">
+  <button mat-raised-button color="primary" (click)="addUser()">Add (Vita user)</button>
+  <button mat-raised-button color="primary" (click)="deleteUser()">Delete (Andrew user)</button>
+  <button mat-raised-button color="primary" (click)="editUser()">Edit (Katya > Katerina)</button>
+  <div *ngIf="users$ | async as users">
+    <pre>{{ users | json }}</pre>
+  </div>
+</div>

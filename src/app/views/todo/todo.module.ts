@@ -16,10 +16,11 @@ import { TodoService } from './todo.service';
 
 // mask
 import { NgxMaskModule } from 'ngx-mask';
+import { SharedModule } from '@src/app/shared/shared.module';
 
 @NgModule({
   declarations: [ListComponent, ModalComponent],
-  imports: [CommonModule, TodoRoutingModule, FormsModule, NgxMaskModule.forRoot()],
+  imports: [CommonModule, SharedModule, TodoRoutingModule, FormsModule, NgxMaskModule.forRoot()],
   providers: [TodoService]
 })
 export class TodoModule {}

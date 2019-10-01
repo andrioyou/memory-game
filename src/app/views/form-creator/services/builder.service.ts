@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, AbstractControl, FormArray, FormControl, Validators } from '@angular/forms';
-import { IElementBase } from '../interfaces/element-base.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class BuilderService {
     const elements = item.elements;
     const group: { [key: string]: AbstractControl } = {};
 
-    elements.forEach((element: IElementBase) => {
+    elements.forEach((element: any) => {
       if (element.elements) {
         group[element.name] = new FormArray([this.toFormGroup(element)]);
       } else {

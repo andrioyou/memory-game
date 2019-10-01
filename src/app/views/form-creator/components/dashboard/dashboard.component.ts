@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IForm } from '../../interfaces/form.interface';
+import { FormElement } from '../../models/form-element.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +7,11 @@ import { IForm } from '../../interfaces/form.interface';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  selectedItem!: IForm;
+  selectedForm!: FormElement;
 
   constructor() {}
 
-  selectItem(item: IForm) {
-    this.selectedItem = item;
+  selectForm(form: FormElement) {
+    this.selectedForm = form;
   }
 }

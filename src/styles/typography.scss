@@ -66,6 +66,14 @@ input {
       border-color: $c-active;
     }
   }
+
+  &:disabled {
+    background-color: $c-lighten;
+
+    &:hover {
+      border: 1px solid $c-light;
+    }
+  }
 }
 
 select {
@@ -86,34 +94,36 @@ select {
   }
 }
 
-button {
-  transition: all 0.3s;
-  outline: none;
-  border: 1px solid $c-active;
-  border-radius: 5px;
-  background-color: $c-active;
-  cursor: pointer;
-  padding: 6px 15px;
-  color: $c-white;
-  font-size: 14px;
-  font-weight: 700;
+// button {
+// transition: all 0.3s;
+// outline: none;
+// border: 1px solid $c-active;
+// border-radius: 5px;
+// background-color: $c-active;
+// cursor: pointer;
+// padding: 6px 15px;
+// color: $c-white;
+// font-size: 14px;
+// font-weight: 700;
 
-  &:hover {
-    background-color: $c-white;
-    color: $c-active;
-  }
+// &:hover {
+//   background-color: $c-white;
+//   color: $c-active;
+// }
 
-  &:disabled,
-  &[disabled] {
-    border-color: $c-grey;
-    background-color: $c-grey;
-    cursor: default;
+// &:not(.mat-icon-button) {
+//   &:disabled,
+//   &[disabled] {
+//     border-color: $c-grey;
+//     background-color: $c-grey;
+//     cursor: default;
 
-    &:hover {
-      color: $c-white;
-    }
-  }
-}
+//     &:hover {
+//       color: $c-white;
+//     }
+//   }
+// }
+// }
 
 hr {
   display: block;

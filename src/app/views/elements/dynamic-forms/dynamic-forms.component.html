@@ -25,16 +25,18 @@
             </div>
           </div>
         </div>
-        <button class="skill-remove" type="button" (click)="removeItem(i)">&#10006;</button>
+        <button mat-raised-button color="primary" class="skill-remove" type="button" (click)="removeItem(i)">
+          &#10006;
+        </button>
       </div>
     </div>
 
     <div class="button">
-      <button type="button" (click)="addItem()">Add skill</button>
+      <button mat-raised-button color="primary" type="button" (click)="addItem()">Add skill</button>
     </div>
 
     <div class="button">
-      <button type="submit" [disabled]="!form.valid">Submit</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
     </div>
   </form>
 

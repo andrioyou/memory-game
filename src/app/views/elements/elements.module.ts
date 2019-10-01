@@ -10,11 +10,13 @@ import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { ButtonModule } from 'primeng/button';
+import { SharedModule } from '@src/app/shared/shared.module';
 
 @NgModule({
   declarations: [ElementsListComponent, ButtonsComponent, InputsComponent, DynamicFormsComponent],
   imports: [
     CommonModule,
+    SharedModule,
     ElementsRoutingModule,
     FormsModule,
     ReactiveFormsModule,

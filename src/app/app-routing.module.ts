@@ -52,6 +52,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'stream-edit',
+    loadChildren: () => import('./views/stream-edit/stream-edit.module').then(mod => mod.StreamEditModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'table',
+    loadChildren: () => import('./views/table/table.module').then(mod => mod.TableModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'auth-ngxs',
     component: AuthNgxsComponent,
     canActivate: [AuthGuard]

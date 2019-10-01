@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IForm } from '../../interfaces/form.interface';
-import { creatorItem } from '../../form-creator.const';
+import { creatorForm } from '../../form-creator.const';
 import { FormsListService } from '../../services/forms-list.service';
+import { FormElement } from '../../models/form-element.model';
 
 @Component({
   selector: 'app-creator',
@@ -9,11 +9,12 @@ import { FormsListService } from '../../services/forms-list.service';
   styleUrls: ['./creator.component.scss']
 })
 export class CreatorComponent {
-  creatorItem: IForm = creatorItem;
+  creatorForm: FormElement = creatorForm;
 
   constructor(private formsListService: FormsListService) {}
 
-  addItemToList(item: IForm) {
-    this.formsListService.addFormItem(item);
+  onAddFormItem(form: FormElement) {
+    form.formId = new Date().getTime().toString();
+    this.formsListService.addFormItem(form);
   }
 }

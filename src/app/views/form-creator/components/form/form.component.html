@@ -1,18 +1,21 @@
-<h3 *ngIf="item.formName">{{ item.formName }}</h3>
-<hr />
-<ng-container *ngIf="form">
-  <form [formGroup]="form">
-    <div *ngFor="let control of formControls; let i = index">
-      <app-form-control [form]="form" [element]="item.elements[i]"></app-form-control>
-    </div>
-    <button class="submit" type="submit" [disabled]="!form.valid" (click)="submit()">Submit</button>
-  </form>
-
-  <p *ngIf="!form">Form wasn't loaded.</p>
-
-  <!-- <p>Form values are:</p>
-  <pre>{{ form.value | json }}</pre> -->
+<ng-container *ngIf="!form">
+  <h3>Form wasn't loaded.</h3>
 </ng-container>
 
-<!-- <p>Form structure is:</p>
-<pre>{{ item | json }}</pre> -->
+<ng-container *ngIf="form">
+  <h3>{{ formElement.formName }}</h3>
+  <hr />
+  <form [formGroup]="form">
+    <div *ngFor="let control of formControls(); let i = index">
+      <app-form-control [form]="form" [element]="formElement.elements[i]"></app-form-control>
+    </div>
+    <button mat-raised-button color="primary" class="submit" type="submit" [disabled]="!form.valid" (click)="submit()">
+      Submit
+    </button>
+  </form>
+
+  <p>Form values are:</p>
+  <pre>{{ form.value | json }}</pre>
+  <p>Form structure is:</p>
+  <pre>{{ formElement | json }}</pre>
+</ng-container>

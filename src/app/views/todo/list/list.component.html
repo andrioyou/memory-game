@@ -17,13 +17,13 @@
       <td>{{ item.dateCreated }}</td>
       <td>{{ item.dateTodo }}</td>
       <td>
-        <button class="remove" (click)="removeSelectedItem(i)">Remove</button>
-        <button class="edit" (click)="editSelectedItem(i)">Edit</button>
+        <button mat-raised-button color="primary" class="remove" (click)="removeSelectedItem(i)">Remove</button>
+        <button mat-raised-button color="primary" class="edit" (click)="editSelectedItem(i)">Edit</button>
       </td>
     </tr>
   </table>
 
-  <button class="add-new-item" (click)="openModal()">Add new</button>
+  <button mat-raised-button color="primary" class="add-new-item" (click)="openModal()">Add new</button>
 </div>
 <div class="modal" *ngIf="modalOpened">
   <app-modal

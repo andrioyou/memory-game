@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+table {
+  width: 100%;
+}
+
+.donwload-btn {
+  margin: 15px 0;
+}
+
+.mat-header-cell {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &:not(.mat-column-select) {
+    display: block;
+  }
+
+  .text {
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  .input {
+    width: calc(100% - 15px);
+  }
+
+  .sort {
+    padding-top: 6px;
+  }
+}
